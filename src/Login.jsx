@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "./api";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Alert,
+  Card,
+} from "react-bootstrap";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -32,27 +41,49 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="login-form">
-      <h2>Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-center p-0"
+      style={{ minHeight: "100vh", width: "100vh", backgroundColor: "#f8f9fa" }}
+    >
+      <Row className="w-100">
+        <Col md={{ span: 6, offset: 3 }}>
+          <Card>
+            <Card.Body>
+              <h2 className="mb-4 text-center">Login</h2>
+              {error && <Alert variant="danger">{error}</Alert>}
+              <Form onSubmit={handleLogin}>
+                <Form.Group controlId="formEmail" className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formPassword" className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" className="w-100">
+                  Log In
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
