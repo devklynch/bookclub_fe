@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BookClubCard from "./components/BookClubCard";
 import axios from "axios";
 
 function Dashboard() {
@@ -8,9 +9,12 @@ function Dashboard() {
   useEffect(() => {
     const fetchClubData = async () => {
       const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user.data.id;
+
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/2/all_club_data",
+          `http://localhost:3000/api/v1/users/${userId}/all_club_data`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -35,13 +39,13 @@ function Dashboard() {
       <h2>Welcome, {clubData.display_name}</h2>
 
       <h3>Book Clubs</h3>
-      <ul>
-        {clubData.book_clubs.map((club) => (
-          <li key={club.id}>
-            <strong>{club.name}</strong>: {club.description}
-          </li>
-        ))}
-      </ul>
+      {clubData.book_clubs.map((club) => (
+        <BookClubCard
+          key={club.id}
+          club={club}
+          onClick={(club) => console.log("Clicked club:", club)}
+        />
+      ))}
 
       <h3>Upcoming Events</h3>
       <ul>

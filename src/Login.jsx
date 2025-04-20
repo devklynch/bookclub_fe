@@ -26,10 +26,20 @@ function Login({ onLogin }) {
         password,
       });
       const token = response.data.token;
-
+      const user = response.data.user;
       // Save the token (optional: localStorage, context, etc.)
       localStorage.setItem("token", token);
-      console.log("Token:", token, "Email:", email);
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log(
+        "Token:",
+        token,
+        "Email:",
+        email,
+        "User:",
+        user,
+        "User ID:",
+        user.data.id
+      );
       // Call any callback passed in (optional)
       if (onLogin) onLogin(token);
 
