@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import BookClubDetail from "./BookClubDetail";
 
 function App() {
   const handleLogin = (token) => {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/bookclub/:id" element={<BookClubDetail />} />
         </Routes>
       </Router>
     </div>

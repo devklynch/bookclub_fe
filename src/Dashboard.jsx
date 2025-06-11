@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import BookClubCard from "./components/BookClubCard";
+import EventCard from "./components/EventCard";
+import PollCard from "./components/PollCard";
 import axios from "axios";
 
 function Dashboard() {
@@ -39,35 +42,30 @@ function Dashboard() {
       <h2>Welcome, {clubData.display_name}</h2>
 
       <h3>Book Clubs</h3>
-      {clubData.book_clubs.map((club) => (
-        <BookClubCard
-          key={club.id}
-          club={club}
-          onClick={(club) => console.log("Clicked club:", club)}
-        />
-      ))}
-
-      <h3>Upcoming Events</h3>
-      <ul>
-        {clubData.upcoming_events.map((event) => (
-          <li key={event.id}>
-            <strong>{event.event_name}</strong> on{" "}
-            {new Date(event.event_date).toLocaleDateString()} at{" "}
-            {event.location} – Book: <em>{event.book}</em>
-          </li>
+      <Row>
+        {clubData.book_clubs.map((club) => (
+          <Col key={club.id} md={4} className="mb-3">
+            <BookClubCard club={club} />
+          </Col>
         ))}
-      </ul>
+      </Row>
+      <h3>Upcoming Events</h3>
+      <Row>
+        {clubData.upcoming_events.map((event) => (
+          <Col key={event.id} md={4} className="mb-3">
+            <EventCard event={event} onClick={(event) => console.log(event)} />
+          </Col>
+        ))}
+      </Row>
 
       <h3>Active Polls</h3>
-      <ul>
+      <Row>
         {clubData.active_polls.map((poll) => (
-          <li key={poll.id}>
-            <strong>{poll.question}</strong> (expires on{" "}
-            {new Date(poll.expiration_date).toLocaleDateString()}) – Club:{" "}
-            {poll.book_club.name}
-          </li>
+          <Col key={poll.id} md={4} className="mb-3">
+            <PollCard poll={poll} onClick={(poll) => console.log(poll)} />
+          </Col>
         ))}
-      </ul>
+      </Row>
     </div>
   );
 }

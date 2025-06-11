@@ -1,13 +1,19 @@
-function BookClubCard({ club, onClick }) {
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+function BookClubCard({ club }) {
   return (
-    <div
-      className="p-3 border rounded mb-2 shadow-sm"
-      style={{ cursor: "pointer" }}
-      onClick={() => onClick(club)}
+    <Link
+      to={`/bookclub/${club.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <h5>{club.name}</h5>
-      <p>{club.description}</p>
-    </div>
+      <Card className="p-3 border rounded mb-2 shadow-sm h-100">
+        <Card.Body>
+          <Card.Title>{club.name}</Card.Title>
+          <Card.Text>{club.description}</Card.Text>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 }
 
