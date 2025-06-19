@@ -47,8 +47,22 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
-
-      {/* You can add more details here like events, polls, etc. */}
+      <h4>Events</h4>
+      <ul>
+        {clubData.attributes.events.map((event) => (
+          <li key={event.id}>
+            {event.event_name} ({event.event_date}) ({event.book})
+          </li>
+        ))}
+      </ul>
+      <h4>Polls</h4>
+      <ul>
+        {clubData.attributes.polls.map((poll) => (
+          <li key={poll.id}>
+            {poll.poll_question} ({poll.expiration_date})
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
