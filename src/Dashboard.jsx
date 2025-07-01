@@ -62,7 +62,7 @@ function Dashboard() {
       <Row>
         {clubData.active_polls.map((poll) => (
           <Col key={poll.id} md={4} className="mb-3">
-            <PollCard poll={poll} onClick={(poll) => console.log(poll)} />
+            <PollCard poll={poll} />
           </Col>
         ))}
       </Row>

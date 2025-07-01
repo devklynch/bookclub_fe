@@ -4,6 +4,7 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BookClubDetail from "./BookClubDetail";
+import PollDetail from "./PollDetail";
 
 function App() {
   const handleLogin = (token) => {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookclub/:id" element={<BookClubDetail />} />
+          <Route path="/poll/:id" element={<PollDetail />} />
         </Routes>
       </Router>
     </div>
