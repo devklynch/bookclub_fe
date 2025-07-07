@@ -53,7 +53,7 @@ function Dashboard() {
       <Row>
         {clubData.upcoming_events.map((event) => (
           <Col key={event.id} md={4} className="mb-3">
-            <EventCard event={event} onClick={(event) => console.log(event)} />
+            <EventCard event={event} />
           </Col>
         ))}
       </Row>
