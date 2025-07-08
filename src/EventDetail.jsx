@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function EventDetail() {
-  const { id } = useParams();
+  const { id, bookClubId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
@@ -13,7 +13,7 @@ function EventDetail() {
   const fetchEvent = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${userId}/events/${id}`,
+        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
