@@ -46,7 +46,7 @@ function EventDetail() {
 
       // Send PATCH request to update attending
       await axios.patch(
-        `http://localhost:3000/api/v1/users/${userId}/events/${id}/attendees/${attendee.attendee_id}`,
+        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}/attendees/${attendee.attendee_id}`,
         { attendee: { attending: newStatus } },
         {
           headers: {
