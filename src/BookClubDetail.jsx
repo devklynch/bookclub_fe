@@ -36,6 +36,8 @@ function BookClubDetail() {
   }, [id]);
 
   const handleEventCreated = (newEvent) => {
+    console.log("🧩 New event received:", newEvent);
+    console.log("📋 Existing events:", clubData.attributes.events);
     setClubData((prevData) => ({
       ...prevData,
       attributes: {
