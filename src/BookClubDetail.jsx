@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import CreateEventModal from "./components/CreateEventModal";
 import axios from "axios";
 
 function BookClubDetail() {
   const { id } = useParams(); // this is the bookclub_id
   const [clubData, setClubData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -32,6 +35,18 @@ function BookClubDetail() {
     fetchClub();
   }, [id]);
 
+  const handleEventCreated = (newEvent) => {
+    console.log("🧩 New event received:", newEvent);
+    console.log("📋 Existing events:", clubData.attributes.events);
+    setClubData((prevData) => ({
+      ...prevData,
+      attributes: {
+        ...prevData.attributes,
+        events: [...prevData.attributes.events, newEvent],
+      },
+    }));
+  };
+
   if (error) return <p>{error}</p>;
   if (!clubData) return <p>Loading...</p>;
 
@@ -55,6 +70,16 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
+      <Button variant="primary" onClick={() => setShowModal(true)}>
+        Create New Event
+      </Button>
+
+      <CreateEventModal
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        bookClubId={id}
+        onEventCreated={handleEventCreated}
+      />
       <h4>Polls</h4>
       <ul>
         {clubData.attributes.polls.map((poll) => (

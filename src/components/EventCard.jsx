@@ -1,10 +1,10 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function EventCard({ event }) {
+function EventCard({ event, bookClubId }) {
   return (
     <Link
-      to={`/event/${event.id}`}
+      to={`/book_clubs/${bookClubId}/event/${event.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Card className="p-3 border rounded mb-2 shadow-sm h-100">

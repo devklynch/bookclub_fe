@@ -21,7 +21,10 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookclub/:id" element={<BookClubDetail />} />
           <Route path="/poll/:id" element={<PollDetail />} />
-          <Route path="/event/:id" element={<EventDetail />} />
+          <Route
+            path="/book_clubs/:bookClubId/event/:id"
+            element={<EventDetail />}
+          />
         </Routes>
       </Router>
     </div>
