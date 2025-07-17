@@ -5,6 +5,7 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_date: "",
+    event_time: "",
     location: "",
     book: "",
     event_notes: "",
@@ -17,6 +18,17 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const combinedDateTime = new Date(
+      `${formData.event_date}T${formData.event_time}`
+    );
+    const eventDateISO = combinedDateTime.toISOString();
+
+    const payload = {
+      ...formData,
+      event_date: eventDateISO, // overwrite with full datetime
+    };
+
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -27,7 +39,7 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -77,6 +89,16 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
               type="date"
               name="event_date"
               value={formData.event_date}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="eventTime">
+            <Form.Label>Event Time</Form.Label>
+            <Form.Control
+              type="time"
+              name="event_time"
+              value={formData.event_time}
               onChange={handleChange}
               required
             />

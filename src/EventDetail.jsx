@@ -94,7 +94,12 @@ function EventDetail() {
   return (
     <div className="p-4">
       <h2>{eventData.attributes.event_name}</h2>
-      <p>{eventData.attributes.event_date}</p>
+      <p>
+        {new Date(eventData.attributes.event_date).toLocaleString(undefined, {
+          dateStyle: "long",
+          timeStyle: "short",
+        })}
+      </p>
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>
