@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function EventDetail() {
-  const { id } = useParams();
+  const { id, bookClubId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
@@ -13,7 +13,7 @@ function EventDetail() {
   const fetchEvent = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${userId}/events/${id}`,
+        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ function EventDetail() {
 
       // Send PATCH request to update attending
       await axios.patch(
-        `http://localhost:3000/api/v1/users/${userId}/events/${id}/attendees/${attendee.attendee_id}`,
+        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}/attendees/${attendee.attendee_id}`,
         { attendee: { attending: newStatus } },
         {
           headers: {
@@ -94,7 +94,12 @@ function EventDetail() {
   return (
     <div className="p-4">
       <h2>{eventData.attributes.event_name}</h2>
-      <p>{eventData.attributes.event_date}</p>
+      <p>
+        {new Date(eventData.attributes.event_date).toLocaleString(undefined, {
+          dateStyle: "long",
+          timeStyle: "short",
+        })}
+      </p>
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>
