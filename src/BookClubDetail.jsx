@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import CreateEventModal from "./components/CreateEventModal";
@@ -97,7 +97,9 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.polls.map((poll) => (
           <li key={poll.id}>
-            {poll.poll_question} ({poll.expiration_date})
+            <Link to={`/poll/${poll.id}`}>
+              {poll.poll_question} ({poll.expiration_date})
+            </Link>
           </li>
         ))}
       </ul>
