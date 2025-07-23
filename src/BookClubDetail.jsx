@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import CreateEventModal from "./components/CreateEventModal";
+import CreatePollModal from "./components/CreatePollModal";
 import axios from "axios";
 
 function BookClubDetail() {
   const { id } = useParams(); // this is the bookclub_id
   const [clubData, setClubData] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [showPollModal, setShowPollModal] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -47,6 +49,17 @@ function BookClubDetail() {
     }));
   };
 
+  const handlePollCreated = (newPoll) => {
+    console.log("📊 New poll received:", newPoll);
+    setClubData((prevData) => ({
+      ...prevData,
+      attributes: {
+        ...prevData.attributes,
+        polls: [...prevData.attributes.polls, newPoll],
+      },
+    }));
+  };
+
   if (error) return <p>{error}</p>;
   if (!clubData) return <p>Loading...</p>;
 
@@ -70,13 +83,13 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
+      <Button variant="primary" onClick={() => setShowEventModal(true)}>
         Create New Event
       </Button>
 
       <CreateEventModal
-        show={showModal}
-        handleClose={() => setShowModal(false)}
+        show={showEventModal}
+        handleClose={() => setShowEventModal(false)}
         bookClubId={id}
         onEventCreated={handleEventCreated}
       />
@@ -88,6 +101,16 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
+      <Button variant="primary" onClick={() => setShowPollModal(true)}>
+        Create New Poll
+      </Button>
+
+      <CreatePollModal
+        show={showPollModal}
+        handleClose={() => setShowPollModal(false)}
+        bookClubId={id}
+        onPollCreated={handlePollCreated}
+      />
     </div>
   );
 }
