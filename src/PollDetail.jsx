@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import EditPollModal from "./components/EditPollModal";
 import axios from "axios";
 
 function PollDetail() {
@@ -7,6 +9,7 @@ function PollDetail() {
   const [pollData, setPollData] = useState(null);
   const [userVotes, setUserVotes] = useState([]);
   const [error, setError] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.data.id;
@@ -92,6 +95,13 @@ function PollDetail() {
       ) : (
         <p className="text-red-600 font-semibold">Can only vote once</p>
       )}
+      <Button
+        variant="warning"
+        onClick={() => setShowEditModal(true)}
+        className="mb-3"
+      >
+        Edit Poll
+      </Button>
       <h4>Options</h4>
       <ul>
         {pollData.attributes.options.map((option) => {
@@ -119,6 +129,15 @@ function PollDetail() {
           );
         })}
       </ul>
+      <EditPollModal
+        show={showEditModal}
+        handleClose={() => setShowEditModal(false)}
+        pollData={pollData}
+        onPollUpdated={(updatedData) => {
+          setPollData(updatedData);
+          setUserVotes(updatedData.attributes.user_votes || []);
+        }}
+      />
     </div>
   );
 }
