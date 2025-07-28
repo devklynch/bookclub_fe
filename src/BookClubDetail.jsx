@@ -79,7 +79,9 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.events.map((event) => (
           <li key={event.id}>
-            {event.event_name} ({event.event_date}) ({event.book})
+            <Link to={`/book_clubs/${id}/event/${event.id}`}>
+              {event.event_name} ({event.event_date}) ({event.book})
+            </Link>
           </li>
         ))}
       </ul>
