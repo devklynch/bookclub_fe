@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import EditEventModal from "./components/EditEventModal";
 import axios from "axios";
 
 function EventDetail() {
   const { id, bookClubId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [error, setError] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.data.id;
@@ -103,6 +106,16 @@ function EventDetail() {
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>
+      <Button onClick={() => setShowEditModal(true)} className="mb-3">
+        ✏️ Edit Event
+      </Button>
+
+      <EditEventModal
+        show={showEditModal}
+        handleClose={() => setShowEditModal(false)}
+        eventData={eventData}
+        onEventUpdated={(updatedEvent) => setEventData(updatedEvent)}
+      />
       <div className="flex items-center gap-2">
         <span>
           Attending:{" "}
