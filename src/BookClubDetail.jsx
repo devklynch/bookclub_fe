@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import CreateEventModal from "./components/CreateEventModal";
 import CreatePollModal from "./components/CreatePollModal";
+import EditBookClubModal from "./components/EditBookClubModal";
 import axios from "axios";
 
 function BookClubDetail() {
@@ -10,6 +11,7 @@ function BookClubDetail() {
   const [clubData, setClubData] = useState(null);
   const [showEventModal, setShowEventModal] = useState(false);
   const [showPollModal, setShowPollModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -59,6 +61,9 @@ function BookClubDetail() {
       },
     }));
   };
+  const handleBookClubUpdated = (updatedClub) => {
+    setClubData(updatedClub); // ✅ Replace state with updated club data
+  };
 
   if (error) return <p>{error}</p>;
   if (!clubData) return <p>Loading...</p>;
@@ -67,6 +72,20 @@ function BookClubDetail() {
     <div className="p-4">
       <h2>{clubData.attributes.name}</h2>
       <p>{clubData.attributes.description}</p>
+      <Button
+        variant="warning"
+        className="mb-3"
+        onClick={() => setShowEditModal(true)}
+      >
+        ✏️ Edit Book Club
+      </Button>
+
+      <EditBookClubModal
+        show={showEditModal}
+        handleClose={() => setShowEditModal(false)}
+        bookClub={clubData}
+        onBookClubUpdated={handleBookClubUpdated}
+      />
       <h4>Members</h4>
       <ul>
         {clubData.attributes.members.map((member) => (
