@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Dropdown, Button } from "react-bootstrap";
 import BookClubCard from "./components/BookClubCard";
 import EventCard from "./components/EventCard";
 import PollCard from "./components/PollCard";
+import CreateBookClubModal from "./components/CreateBookClubModal";
 import axios from "axios";
 
 function Dashboard() {
   const [clubData, setClubData] = useState(null);
   const [error, setError] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     const fetchClubData = async () => {
@@ -37,9 +39,52 @@ function Dashboard() {
   if (error) return <p>{error}</p>;
   if (!clubData) return <p>Loading...</p>;
 
+  const handleBookClubCreated = (newBookClub) => {
+    setClubData((prevData) => ({
+      ...prevData,
+      book_clubs: [...prevData.book_clubs, newBookClub],
+    }));
+  };
+
   return (
     <div className="p-4">
-      <h2>Welcome, {clubData.display_name}</h2>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, {clubData.display_name}</h2>
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="outline-secondary"
+            id="dropdown-basic"
+            style={{
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "20px",
+              border: "2px solid #6c757d",
+            }}
+          >
+            ☰
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => setShowCreateModal(true)}>
+              <i className="fas fa-plus me-2"></i>
+              Create Book Club
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item>
+              <i className="fas fa-cog me-2"></i>
+              Settings
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <i className="fas fa-sign-out-alt me-2"></i>
+              Logout
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
 
       <h3>Book Clubs</h3>
       <Row>
@@ -66,6 +111,12 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
+
+      <CreateBookClubModal
+        show={showCreateModal}
+        handleClose={() => setShowCreateModal(false)}
+        onBookClubCreated={handleBookClubCreated}
+      />
     </div>
   );
 }
