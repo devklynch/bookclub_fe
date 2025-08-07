@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login";
+import CreateAccount from "./CreateAccount";
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 import Dashboard from "./Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BookClubDetail from "./BookClubDetail";
@@ -18,6 +21,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login onLogin={handleLogin} />} />
+          <Route path="/create_account" element={<CreateAccount />} />
+          <Route path="/forgot_password" element={<ForgotPassword />} />
+          <Route path="/reset_password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookclub/:id" element={<BookClubDetail />} />
           <Route path="/poll/:id" element={<PollDetail />} />

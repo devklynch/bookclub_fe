@@ -85,9 +85,31 @@ function Login({ onLogin }) {
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100">
+                <Button variant="primary" type="submit" className="w-100 mb-3">
                   Log In
                 </Button>
+
+                <div className="text-center">
+                  <small className="text-muted">
+                    Don't have an account?{" "}
+                    <a
+                      href="/create_account"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Create one here
+                    </a>
+                  </small>
+                </div>
+                <div className="text-center mt-2">
+                  <small className="text-muted">
+                    <a
+                      href="/forgot_password"
+                      style={{ textDecoration: "none" }}
+                    >
+                      Forgot your password?
+                    </a>
+                  </small>
+                </div>
               </Form>
             </Card.Body>
           </Card>
