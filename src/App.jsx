@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BookClubDetail from "./BookClubDetail";
 import PollDetail from "./PollDetail";
 import EventDetail from "./EventDetail";
+import AllBookClubs from "./AllBookClubs";
 
 function App() {
   const handleLogin = (token) => {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/forgot_password" element={<ForgotPassword />} />
           <Route path="/reset_password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/bookclubs" element={<AllBookClubs />} />
           <Route path="/bookclub/:id" element={<BookClubDetail />} />
           <Route path="/poll/:id" element={<PollDetail />} />
           <Route
