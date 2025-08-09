@@ -67,6 +67,7 @@ function AllEvents() {
                 <EventCard
                   event={{
                     ...event.attributes,
+                    id: event.id,
                     book_club: { id: event.attributes.book_club_id },
                   }}
                   bookClubId={event.attributes.book_club_id}
@@ -94,6 +95,7 @@ function AllEvents() {
                 <EventCard
                   event={{
                     ...event.attributes,
+                    id: event.id,
                     book_club: { id: event.attributes.book_club_id },
                   }}
                   bookClubId={event.attributes.book_club_id}

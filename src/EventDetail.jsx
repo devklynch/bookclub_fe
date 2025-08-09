@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import EditEventModal from "./components/EditEventModal";
 import axios from "axios";
+import { formatEventDate } from "./utils/dateUtils";
 
 function EventDetail() {
   const { id, bookClubId } = useParams();
@@ -97,12 +98,7 @@ function EventDetail() {
   return (
     <div className="p-4">
       <h2>{eventData.attributes.event_name}</h2>
-      <p>
-        {new Date(eventData.attributes.event_date).toLocaleString(undefined, {
-          dateStyle: "long",
-          timeStyle: "short",
-        })}
-      </p>
+      <p>{formatEventDate(eventData.attributes.event_date)}</p>
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>

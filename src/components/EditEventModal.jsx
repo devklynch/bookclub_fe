@@ -138,7 +138,7 @@ function EditEventModal({ show, handleClose, eventData, onEventUpdated }) {
             <Button
               type="submit"
               variant="primary"
-              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+  
             >
               Save Changes
             </Button>

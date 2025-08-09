@@ -1,21 +1,8 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { formatEventDate } from "../utils/dateUtils";
 
 function EventCard({ event, bookClubId }) {
-  const formatEventDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    };
-    return date.toLocaleDateString("en-US", options);
-  };
-
   return (
     <Link
       to={`/book_clubs/${bookClubId}/event/${event.id}`}

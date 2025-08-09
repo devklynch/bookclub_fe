@@ -53,12 +53,12 @@ function Login({ onLogin }) {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center p-0"
-      style={{ minHeight: "100vh", width: "100vh", backgroundColor: "#f8f9fa" }}
+      className="d-flex justify-content-center align-items-center p-0 bg-primary"
+      style={{ minHeight: "100vh", width: "100vh" }}
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card style={{ backgroundColor: "#f0ecc9" }}>
+          <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Login</h2>
               {error && <Alert variant="danger">{error}</Alert>}
@@ -89,7 +89,6 @@ function Login({ onLogin }) {
                   variant="primary"
                   type="submit"
                   className="w-100 mb-3"
-                  style={{ backgroundColor: "#058789", borderColor: "#058789" }}
                 >
                   Log In
                 </Button>

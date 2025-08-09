@@ -92,16 +92,12 @@ function ResetPassword() {
     return (
       <Container
         fluid
-        className="d-flex justify-content-center align-items-center p-0"
-        style={{
-          minHeight: "100vh",
-          width: "100vh",
-          backgroundColor: "#f8f9fa",
-        }}
+        className="d-flex justify-content-center align-items-center p-0 bg-light"
+        style={{ minHeight: "100vh", width: "100vh" }}
       >
         <Row className="w-100">
           <Col md={{ span: 6, offset: 3 }}>
-            <Card style={{ backgroundColor: "#f0ecc9" }}>
+            <Card className="bg-secondary">
               <Card.Body>
                 <h2 className="mb-4 text-center">Invalid Reset Link</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -109,10 +105,6 @@ function ResetPassword() {
                   <a
                     href="/forgot_password"
                     className="btn btn-primary"
-                    style={{
-                      backgroundColor: "#058789",
-                      borderColor: "#058789",
-                    }}
                   >
                     Request New Reset Link
                   </a>
@@ -128,12 +120,12 @@ function ResetPassword() {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center p-0"
-      style={{ minHeight: "100vh", width: "100vh", backgroundColor: "#f8f9fa" }}
+      className="d-flex justify-content-center align-items-center p-0 bg-light"
+      style={{ minHeight: "100vh", width: "100vh" }}
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card style={{ backgroundColor: "#f0ecc9" }}>
+          <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Reset Password</h2>
               <p className="text-muted text-center mb-4">
@@ -175,7 +167,6 @@ function ResetPassword() {
                   type="submit"
                   className="w-100 mb-3"
                   disabled={loading}
-                  style={{ backgroundColor: "#058789", borderColor: "#058789" }}
                 >
                   {loading ? "Resetting Password..." : "Reset Password"}
                 </Button>
@@ -183,7 +174,7 @@ function ResetPassword() {
                 <div className="text-center">
                   <small className="text-muted">
                     Remember your password?{" "}
-                    <a href="/" style={{ textDecoration: "none" }}>
+                    <a href="/" className="text-decoration-none">
                       Log in here
                     </a>
                   </small>

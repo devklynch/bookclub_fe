@@ -5,6 +5,7 @@ import CreateEventModal from "./components/CreateEventModal";
 import CreatePollModal from "./components/CreatePollModal";
 import EditBookClubModal from "./components/EditBookClubModal";
 import axios from "axios";
+import { formatEventDate, formatPollDate } from "./utils/dateUtils";
 
 function BookClubDetail() {
   const { id } = useParams(); // this is the bookclub_id
@@ -109,7 +110,8 @@ function BookClubDetail() {
               to={`/book_clubs/${id}/event/${event.id}`}
               style={{ color: "#058789" }}
             >
-              {event.event_name} ({event.event_date}) ({event.book})
+              {event.event_name} ({formatEventDate(event.event_date)}) (
+              {event.book})
             </Link>
           </li>
         ))}
@@ -135,7 +137,7 @@ function BookClubDetail() {
         {clubData.attributes.polls.map((poll) => (
           <li key={poll.id}>
             <Link to={`/poll/${poll.id}`} style={{ color: "#058789" }}>
-              {poll.poll_question} ({poll.expiration_date})
+              {poll.poll_question} ({formatPollDate(poll.expiration_date)})
             </Link>
           </li>
         ))}

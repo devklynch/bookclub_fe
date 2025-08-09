@@ -154,7 +154,7 @@ function CreatePollModal({ show, handleClose, bookClubId, onPollCreated }) {
             <Button
               type="submit"
               variant="primary"
-              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+  
             >
               Save
             </Button>

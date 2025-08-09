@@ -11,6 +11,48 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Custom color variables */
+  --primary-bg: #e3a72f;
+  --primary-text: #503d2e;
+  --card-bg: #f0ecc9;
+  --accent-color: #058789;
+  --border-color: #503d2e;
+
+  /* Additional color options */
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+
+  /* Button variants */
+  --btn-primary-bg: var(--accent-color);
+  --btn-primary-border: var(--accent-color);
+  --btn-primary-text: white;
+  --btn-secondary-bg: var(--card-bg);
+  --btn-secondary-border: var(--border-color);
+  --btn-secondary-text: var(--primary-text);
+
+  /* Link colors */
+  --link-color: var(--accent-color);
+  --link-hover-color: #046a6c;
+
+  /* Form states */
+  --input-border: var(--border-color);
+  --input-focus-border: var(--accent-color);
+  --input-focus-shadow: rgba(5, 135, 137, 0.25);
+
+  /* Text colors */
+  --text-primary: var(--primary-text);
+  --text-secondary: #6c757d;
+  --text-muted: #6c757d;
+
+  /* Background variants */
+  --bg-primary: var(--primary-bg);
+  --bg-secondary: var(--card-bg);
+  --bg-light: var(--light-color);
 }
 
 a {
@@ -74,4 +116,112 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* Global Bootstrap overrides using CSS variables */
+
+/* Form controls */
+.form-control {
+  border-color: var(--input-border) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control:focus {
+  border-color: var(--input-focus-border) !important;
+  box-shadow: 0 0 0 0.2rem var(--input-focus-shadow) !important;
+}
+
+/* Cards */
+.card {
+  border-color: var(--border-color) !important;
+  background-color: var(--card-bg) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--btn-primary-bg) !important;
+  border-color: var(--btn-primary-border) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--link-hover-color) !important;
+  border-color: var(--link-hover-color) !important;
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg) !important;
+  border-color: var(--btn-secondary-border) !important;
+  color: var(--btn-secondary-text) !important;
+}
+
+.btn-outline-primary {
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+  color: white !important;
+}
+
+/* Links */
+a {
+  color: var(--link-color) !important;
+}
+
+a:hover {
+  color: var(--link-hover-color) !important;
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Background colors */
+.bg-primary {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-light {
+  background-color: var(--bg-light) !important;
+}
+
+/* Alert variants */
+.alert-success {
+  background-color: var(--success-color) !important;
+  border-color: var(--success-color) !important;
+  color: white !important;
+}
+
+.alert-danger {
+  background-color: var(--danger-color) !important;
+  border-color: var(--danger-color) !important;
+  color: white !important;
+}
+
+.alert-warning {
+  background-color: var(--warning-color) !important;
+  border-color: var(--warning-color) !important;
+  color: var(--dark-color) !important;
+}
+
+.alert-info {
+  background-color: var(--info-color) !important;
+  border-color: var(--info-color) !important;
+  color: white !important;
 }

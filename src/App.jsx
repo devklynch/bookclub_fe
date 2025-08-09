@@ -19,10 +19,7 @@ function App() {
   };
 
   return (
-    <div
-      className="p-2"
-      style={{ backgroundColor: "#e3a72f", color: "#503d2e" }}
-    >
+    <div className="p-2 bg-primary text-primary">
       <h1 className="text-center my-4">Booked & Busy</h1>
       <Router>
         <Routes>

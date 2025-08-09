@@ -80,7 +80,7 @@ function CreateBookClubModal({ show, handleClose, onBookClubCreated }) {
             <Button
               type="submit"
               variant="primary"
-              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+  
             >
               Create Book Club
             </Button>

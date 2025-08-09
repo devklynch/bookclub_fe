@@ -138,7 +138,7 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
             <Button
               type="submit"
               variant="primary"
-              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+  
             >
               Save
             </Button>
