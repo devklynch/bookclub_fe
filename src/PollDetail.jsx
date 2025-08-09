@@ -83,11 +83,28 @@ function PollDetail() {
     }
   };
 
+  const formatExpirationDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return date.toLocaleDateString("en-US", options);
+  };
+
   return (
     <div className="p-4">
       <h2>{pollData.attributes.poll_question}</h2>
       <p>{pollData.attributes.book_club_name}</p>
-      <p>{pollData.attributes.expiration_date}</p>
+      <p>
+        <strong>Expires:</strong>{" "}
+        {formatExpirationDate(pollData.attributes.expiration_date)}
+      </p>
       {pollData.attributes.multiple_votes ? (
         <p className="text-green-600 font-semibold">
           Can vote for multiple options

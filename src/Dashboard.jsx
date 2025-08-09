@@ -86,7 +86,12 @@ function Dashboard() {
         </Dropdown>
       </div>
 
-      <h3>Book Clubs</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Book Clubs</h3>
+        <a href="/bookclubs" className="btn btn-outline-primary btn-sm">
+          Show all clubs
+        </a>
+      </div>
       <Row>
         {clubData.book_clubs.map((club) => (
           <Col key={club.id} md={4} className="mb-3">
@@ -94,7 +99,12 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
-      <h3>Upcoming Events</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Upcoming Events</h3>
+        <a href="/events" className="btn btn-outline-primary btn-sm">
+          Show all events
+        </a>
+      </div>
       <Row>
         {clubData.upcoming_events.map((event) => (
           <Col key={event.id} md={4} className="mb-3">
@@ -103,7 +113,12 @@ function Dashboard() {
         ))}
       </Row>
 
-      <h3>Active Polls</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Active Polls</h3>
+        <a href="/polls" className="btn btn-outline-primary btn-sm">
+          Show all polls
+        </a>
+      </div>
       <Row>
         {clubData.active_polls.map((poll) => (
           <Col key={poll.id} md={4} className="mb-3">
