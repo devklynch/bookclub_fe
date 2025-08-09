@@ -106,7 +106,15 @@ function EventDetail() {
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>
-      <Button onClick={() => setShowEditModal(true)} className="mb-3">
+      <Button
+        onClick={() => setShowEditModal(true)}
+        className="mb-3"
+        style={{
+          backgroundColor: "#f0ecc9",
+          borderColor: "#f0ecc9",
+          color: "#503d2e",
+        }}
+      >
         ✏️ Edit Event
       </Button>
 
@@ -131,30 +139,90 @@ function EventDetail() {
         <div className="my-4">
           {eventData.attributes.user_is_attending === true && (
             <>
-              <button onClick={() => updateAttending(false)}>
+              <button
+                onClick={() => updateAttending(false)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ❌ Mark as Not Attending
               </button>
-              <button onClick={() => updateAttending(null)}>
+              <button
+                onClick={() => updateAttending(null)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ❓ Mark as Undecided
               </button>
             </>
           )}
           {eventData.attributes.user_is_attending === null && (
             <>
-              <button onClick={() => updateAttending(true)}>
+              <button
+                onClick={() => updateAttending(true)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ✅ Mark as Attending
               </button>
-              <button onClick={() => updateAttending(false)}>
+              <button
+                onClick={() => updateAttending(false)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ❌ Mark as Not Attending
               </button>
             </>
           )}
           {eventData.attributes.user_is_attending === false && (
             <>
-              <button onClick={() => updateAttending(true)}>
+              <button
+                onClick={() => updateAttending(true)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ✅ Mark as Attending
               </button>
-              <button onClick={() => updateAttending(null)}>
+              <button
+                onClick={() => updateAttending(null)}
+                style={{
+                  backgroundColor: "#f0ecc9",
+                  borderColor: "#f0ecc9",
+                  color: "#503d2e",
+                  marginRight: "10px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                }}
+              >
                 ❓ Mark as Undecided
               </button>
             </>

@@ -58,7 +58,7 @@ function Login({ onLogin }) {
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card style={{ backgroundColor: "#f0ecc9" }}>
             <Card.Body>
               <h2 className="mb-4 text-center">Login</h2>
               {error && <Alert variant="danger">{error}</Alert>}
@@ -85,7 +85,12 @@ function Login({ onLogin }) {
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100 mb-3">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="w-100 mb-3"
+                  style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+                >
                   Log In
                 </Button>
 

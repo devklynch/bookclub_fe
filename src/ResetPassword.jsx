@@ -101,12 +101,19 @@ function ResetPassword() {
       >
         <Row className="w-100">
           <Col md={{ span: 6, offset: 3 }}>
-            <Card>
+            <Card style={{ backgroundColor: "#f0ecc9" }}>
               <Card.Body>
                 <h2 className="mb-4 text-center">Invalid Reset Link</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className="text-center">
-                  <a href="/forgot_password" className="btn btn-primary">
+                  <a
+                    href="/forgot_password"
+                    className="btn btn-primary"
+                    style={{
+                      backgroundColor: "#058789",
+                      borderColor: "#058789",
+                    }}
+                  >
                     Request New Reset Link
                   </a>
                 </div>
@@ -126,7 +133,7 @@ function ResetPassword() {
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card style={{ backgroundColor: "#f0ecc9" }}>
             <Card.Body>
               <h2 className="mb-4 text-center">Reset Password</h2>
               <p className="text-muted text-center mb-4">
@@ -168,6 +175,7 @@ function ResetPassword() {
                   type="submit"
                   className="w-100 mb-3"
                   disabled={loading}
+                  style={{ backgroundColor: "#058789", borderColor: "#058789" }}
                 >
                   {loading ? "Resetting Password..." : "Reset Password"}
                 </Button>

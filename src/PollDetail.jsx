@@ -116,6 +116,11 @@ function PollDetail() {
         variant="warning"
         onClick={() => setShowEditModal(true)}
         className="mb-3"
+        style={{
+          backgroundColor: "#f0ecc9",
+          borderColor: "#f0ecc9",
+          color: "#503d2e",
+        }}
       >
         Edit Poll
       </Button>
@@ -129,14 +134,20 @@ function PollDetail() {
               {option.option_text} - Votes: {option.votes_count}{" "}
               {userVote ? (
                 <button
-                  className="bg-red-500 text-white px-2 py-1 rounded text-sm ml-2"
+                  className="px-2 py-1 rounded text-sm ml-2"
+                  style={{
+                    backgroundColor: "#f0ecc9",
+                    borderColor: "#f0ecc9",
+                    color: "#503d2e",
+                  }}
                   onClick={() => handleRemoveVote(option.id, userVote.vote_id)}
                 >
                   Remove Vote
                 </button>
               ) : (
                 <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded text-sm ml-2"
+                  className="px-2 py-1 rounded text-sm ml-2"
+                  style={{ backgroundColor: "#058789", color: "white" }}
                   onClick={() => handleVote(option.id)}
                 >
                   Vote

@@ -76,6 +76,11 @@ function BookClubDetail() {
         variant="warning"
         className="mb-3"
         onClick={() => setShowEditModal(true)}
+        style={{
+          backgroundColor: "#f0ecc9",
+          borderColor: "#f0ecc9",
+          color: "#503d2e",
+        }}
       >
         ✏️ Edit Book Club
       </Button>
@@ -98,13 +103,20 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.events.map((event) => (
           <li key={event.id}>
-            <Link to={`/book_clubs/${id}/event/${event.id}`}>
+            <Link
+              to={`/book_clubs/${id}/event/${event.id}`}
+              style={{ color: "#058789" }}
+            >
               {event.event_name} ({event.event_date}) ({event.book})
             </Link>
           </li>
         ))}
       </ul>
-      <Button variant="primary" onClick={() => setShowEventModal(true)}>
+      <Button
+        variant="primary"
+        onClick={() => setShowEventModal(true)}
+        style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+      >
         Create New Event
       </Button>
 
@@ -118,13 +130,17 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.polls.map((poll) => (
           <li key={poll.id}>
-            <Link to={`/poll/${poll.id}`}>
+            <Link to={`/poll/${poll.id}`} style={{ color: "#058789" }}>
               {poll.poll_question} ({poll.expiration_date})
             </Link>
           </li>
         ))}
       </ul>
-      <Button variant="primary" onClick={() => setShowPollModal(true)}>
+      <Button
+        variant="primary"
+        onClick={() => setShowPollModal(true)}
+        style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+      >
         Create New Poll
       </Button>
 

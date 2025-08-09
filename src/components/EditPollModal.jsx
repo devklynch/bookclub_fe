@@ -180,7 +180,11 @@ function EditPollModal({ show, handleClose, pollData, onPollUpdated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button type="submit" variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+            >
               Save Changes
             </Button>
           </div>

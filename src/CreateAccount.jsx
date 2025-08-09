@@ -72,7 +72,7 @@ function CreateAccount() {
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card style={{ backgroundColor: "#f0ecc9" }}>
             <Card.Body>
               <h2 className="mb-4 text-center">Create Account</h2>
               {error && <Alert variant="danger">{error}</Alert>}
@@ -133,6 +133,7 @@ function CreateAccount() {
                   type="submit"
                   className="w-100 mb-3"
                   disabled={loading}
+                  style={{ backgroundColor: "#058789", borderColor: "#058789" }}
                 >
                   {loading ? "Creating Account..." : "Create Account"}
                 </Button>

@@ -51,7 +51,10 @@ function AllPolls() {
       <div className="mb-5">
         <h3 className="mb-3">Active Polls</h3>
         {polls.active_polls.length === 0 ? (
-          <Card className="p-4 text-center">
+          <Card
+            className="p-4 text-center"
+            style={{ backgroundColor: "#f0ecc9" }}
+          >
             <p className="mb-0">No active polls found.</p>
           </Card>
         ) : (
@@ -75,7 +78,10 @@ function AllPolls() {
       <div>
         <h3 className="mb-3">Expired Polls</h3>
         {polls.expired_polls.length === 0 ? (
-          <Card className="p-4 text-center">
+          <Card
+            className="p-4 text-center"
+            style={{ backgroundColor: "#f0ecc9" }}
+          >
             <p className="mb-0">No expired polls found.</p>
           </Card>
         ) : (
