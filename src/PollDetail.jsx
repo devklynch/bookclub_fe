@@ -112,18 +112,20 @@ function PollDetail() {
       ) : (
         <p className="text-red-600 font-semibold">Can only vote once</p>
       )}
-      <Button
-        variant="warning"
-        onClick={() => setShowEditModal(true)}
-        className="mb-3"
-        style={{
-          backgroundColor: "#f0ecc9",
-          borderColor: "#f0ecc9",
-          color: "#503d2e",
-        }}
-      >
-        Edit Poll
-      </Button>
+      {pollData.attributes.user_is_admin && (
+        <Button
+          variant="warning"
+          onClick={() => setShowEditModal(true)}
+          className="mb-3"
+          style={{
+            backgroundColor: "#f0ecc9",
+            borderColor: "#f0ecc9",
+            color: "#503d2e",
+          }}
+        >
+          Edit Poll
+        </Button>
+      )}
       <h4>Options</h4>
       <ul>
         {pollData.attributes.options.map((option) => {

@@ -106,17 +106,19 @@ function EventDetail() {
       <p>Location: {eventData.attributes.location}</p>
       <p>{eventData.attributes.book}</p>
       <p>{eventData.attributes.event_notes}</p>
-      <Button
-        onClick={() => setShowEditModal(true)}
-        className="mb-3"
-        style={{
-          backgroundColor: "#f0ecc9",
-          borderColor: "#f0ecc9",
-          color: "#503d2e",
-        }}
-      >
-        ✏️ Edit Event
-      </Button>
+      {eventData.attributes.user_is_admin && (
+        <Button
+          onClick={() => setShowEditModal(true)}
+          className="mb-3"
+          style={{
+            backgroundColor: "#f0ecc9",
+            borderColor: "#f0ecc9",
+            color: "#503d2e",
+          }}
+        >
+          ✏️ Edit Event
+        </Button>
+      )}
 
       <EditEventModal
         show={showEditModal}

@@ -72,18 +72,20 @@ function BookClubDetail() {
     <div className="p-4">
       <h2>{clubData.attributes.name}</h2>
       <p>{clubData.attributes.description}</p>
-      <Button
-        variant="warning"
-        className="mb-3"
-        onClick={() => setShowEditModal(true)}
-        style={{
-          backgroundColor: "#f0ecc9",
-          borderColor: "#f0ecc9",
-          color: "#503d2e",
-        }}
-      >
-        ✏️ Edit Book Club
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="warning"
+          className="mb-3"
+          onClick={() => setShowEditModal(true)}
+          style={{
+            backgroundColor: "#f0ecc9",
+            borderColor: "#f0ecc9",
+            color: "#503d2e",
+          }}
+        >
+          ✏️ Edit Book Club
+        </Button>
+      )}
 
       <EditBookClubModal
         show={showEditModal}
@@ -112,13 +114,15 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
-      <Button
-        variant="primary"
-        onClick={() => setShowEventModal(true)}
-        style={{ backgroundColor: "#058789", borderColor: "#058789" }}
-      >
-        Create New Event
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="primary"
+          onClick={() => setShowEventModal(true)}
+          style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+        >
+          Create New Event
+        </Button>
+      )}
 
       <CreateEventModal
         show={showEventModal}
@@ -136,13 +140,15 @@ function BookClubDetail() {
           </li>
         ))}
       </ul>
-      <Button
-        variant="primary"
-        onClick={() => setShowPollModal(true)}
-        style={{ backgroundColor: "#058789", borderColor: "#058789" }}
-      >
-        Create New Poll
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="primary"
+          onClick={() => setShowPollModal(true)}
+          style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+        >
+          Create New Poll
+        </Button>
+      )}
 
       <CreatePollModal
         show={showPollModal}
