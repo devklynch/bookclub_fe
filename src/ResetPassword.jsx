@@ -92,21 +92,20 @@ function ResetPassword() {
     return (
       <Container
         fluid
-        className="d-flex justify-content-center align-items-center p-0"
-        style={{
-          minHeight: "100vh",
-          width: "100vh",
-          backgroundColor: "#f8f9fa",
-        }}
+        className="d-flex justify-content-center align-items-center p-0 bg-light"
+        style={{ minHeight: "100vh", width: "100vh" }}
       >
         <Row className="w-100">
           <Col md={{ span: 6, offset: 3 }}>
-            <Card>
+            <Card className="bg-secondary">
               <Card.Body>
                 <h2 className="mb-4 text-center">Invalid Reset Link</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className="text-center">
-                  <a href="/forgot_password" className="btn btn-primary">
+                  <a
+                    href="/forgot_password"
+                    className="btn btn-primary"
+                  >
                     Request New Reset Link
                   </a>
                 </div>
@@ -121,12 +120,12 @@ function ResetPassword() {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center p-0"
-      style={{ minHeight: "100vh", width: "100vh", backgroundColor: "#f8f9fa" }}
+      className="d-flex justify-content-center align-items-center p-0 bg-light"
+      style={{ minHeight: "100vh", width: "100vh" }}
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Reset Password</h2>
               <p className="text-muted text-center mb-4">
@@ -175,7 +174,7 @@ function ResetPassword() {
                 <div className="text-center">
                   <small className="text-muted">
                     Remember your password?{" "}
-                    <a href="/" style={{ textDecoration: "none" }}>
+                    <a href="/" className="text-decoration-none">
                       Log in here
                     </a>
                   </small>

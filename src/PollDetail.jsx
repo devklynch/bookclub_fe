@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import EditPollModal from "./components/EditPollModal";
 import axios from "axios";
+import { formatPollDate } from "./utils/dateUtils";
 
 function PollDetail() {
   const { id } = useParams();
@@ -83,27 +84,13 @@ function PollDetail() {
     }
   };
 
-  const formatExpirationDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    };
-    return date.toLocaleDateString("en-US", options);
-  };
-
   return (
     <div className="p-4">
       <h2>{pollData.attributes.poll_question}</h2>
       <p>{pollData.attributes.book_club_name}</p>
       <p>
         <strong>Expires:</strong>{" "}
-        {formatExpirationDate(pollData.attributes.expiration_date)}
+        {formatPollDate(pollData.attributes.expiration_date)}
       </p>
       {pollData.attributes.multiple_votes ? (
         <p className="text-green-600 font-semibold">
@@ -112,13 +99,20 @@ function PollDetail() {
       ) : (
         <p className="text-red-600 font-semibold">Can only vote once</p>
       )}
-      <Button
-        variant="warning"
-        onClick={() => setShowEditModal(true)}
-        className="mb-3"
-      >
-        Edit Poll
-      </Button>
+      {pollData.attributes.user_is_admin && (
+        <Button
+          variant="warning"
+          onClick={() => setShowEditModal(true)}
+          className="mb-3"
+          style={{
+            backgroundColor: "#f0ecc9",
+            borderColor: "#f0ecc9",
+            color: "#503d2e",
+          }}
+        >
+          Edit Poll
+        </Button>
+      )}
       <h4>Options</h4>
       <ul>
         {pollData.attributes.options.map((option) => {
@@ -129,14 +123,20 @@ function PollDetail() {
               {option.option_text} - Votes: {option.votes_count}{" "}
               {userVote ? (
                 <button
-                  className="bg-red-500 text-white px-2 py-1 rounded text-sm ml-2"
+                  className="px-2 py-1 rounded text-sm ml-2"
+                  style={{
+                    backgroundColor: "#f0ecc9",
+                    borderColor: "#f0ecc9",
+                    color: "#503d2e",
+                  }}
                   onClick={() => handleRemoveVote(option.id, userVote.vote_id)}
                 >
                   Remove Vote
                 </button>
               ) : (
                 <button
-                  className="bg-blue-500 text-white px-2 py-1 rounded text-sm ml-2"
+                  className="px-2 py-1 rounded text-sm ml-2"
+                  style={{ backgroundColor: "#058789", color: "white" }}
                   onClick={() => handleVote(option.id)}
                 >
                   Vote

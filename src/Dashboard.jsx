@@ -88,7 +88,11 @@ function Dashboard() {
 
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3>Book Clubs</h3>
-        <a href="/bookclubs" className="btn btn-outline-primary btn-sm">
+        <a
+          href="/bookclubs"
+          className="btn btn-outline-primary btn-sm"
+          style={{ borderColor: "#058789", color: "#058789" }}
+        >
           Show all clubs
         </a>
       </div>
@@ -101,7 +105,11 @@ function Dashboard() {
       </Row>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3>Upcoming Events</h3>
-        <a href="/events" className="btn btn-outline-primary btn-sm">
+        <a
+          href="/events"
+          className="btn btn-outline-primary btn-sm"
+          style={{ borderColor: "#058789", color: "#058789" }}
+        >
           Show all events
         </a>
       </div>
@@ -115,7 +123,11 @@ function Dashboard() {
 
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3>Active Polls</h3>
-        <a href="/polls" className="btn btn-outline-primary btn-sm">
+        <a
+          href="/polls"
+          className="btn btn-outline-primary btn-sm"
+          style={{ borderColor: "#058789", color: "#058789" }}
+        >
           Show all polls
         </a>
       </div>

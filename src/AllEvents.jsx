@@ -54,7 +54,10 @@ function AllEvents() {
       <div className="mb-5">
         <h3 className="mb-3">Upcoming Events</h3>
         {events.upcoming_events.length === 0 ? (
-          <Card className="p-4 text-center">
+          <Card
+            className="p-4 text-center"
+            style={{ backgroundColor: "#f0ecc9" }}
+          >
             <p className="mb-0">No upcoming events found.</p>
           </Card>
         ) : (
@@ -64,6 +67,7 @@ function AllEvents() {
                 <EventCard
                   event={{
                     ...event.attributes,
+                    id: event.id,
                     book_club: { id: event.attributes.book_club_id },
                   }}
                   bookClubId={event.attributes.book_club_id}
@@ -78,7 +82,10 @@ function AllEvents() {
       <div>
         <h3 className="mb-3">Past Events</h3>
         {events.past_events.length === 0 ? (
-          <Card className="p-4 text-center">
+          <Card
+            className="p-4 text-center"
+            style={{ backgroundColor: "#f0ecc9" }}
+          >
             <p className="mb-0">No past events found.</p>
           </Card>
         ) : (
@@ -88,6 +95,7 @@ function AllEvents() {
                 <EventCard
                   event={{
                     ...event.attributes,
+                    id: event.id,
                     book_club: { id: event.attributes.book_club_id },
                   }}
                   bookClubId={event.attributes.book_club_id}

@@ -72,7 +72,7 @@ function CreateAccount() {
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Create Account</h2>
               {error && <Alert variant="danger">{error}</Alert>}

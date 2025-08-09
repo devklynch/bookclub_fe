@@ -5,6 +5,7 @@ import CreateEventModal from "./components/CreateEventModal";
 import CreatePollModal from "./components/CreatePollModal";
 import EditBookClubModal from "./components/EditBookClubModal";
 import axios from "axios";
+import { formatEventDate, formatPollDate } from "./utils/dateUtils";
 
 function BookClubDetail() {
   const { id } = useParams(); // this is the bookclub_id
@@ -72,13 +73,20 @@ function BookClubDetail() {
     <div className="p-4">
       <h2>{clubData.attributes.name}</h2>
       <p>{clubData.attributes.description}</p>
-      <Button
-        variant="warning"
-        className="mb-3"
-        onClick={() => setShowEditModal(true)}
-      >
-        ✏️ Edit Book Club
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="warning"
+          className="mb-3"
+          onClick={() => setShowEditModal(true)}
+          style={{
+            backgroundColor: "#f0ecc9",
+            borderColor: "#f0ecc9",
+            color: "#503d2e",
+          }}
+        >
+          ✏️ Edit Book Club
+        </Button>
+      )}
 
       <EditBookClubModal
         show={showEditModal}
@@ -98,15 +106,25 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.events.map((event) => (
           <li key={event.id}>
-            <Link to={`/book_clubs/${id}/event/${event.id}`}>
-              {event.event_name} ({event.event_date}) ({event.book})
+            <Link
+              to={`/book_clubs/${id}/event/${event.id}`}
+              style={{ color: "#058789" }}
+            >
+              {event.event_name} ({formatEventDate(event.event_date)}) (
+              {event.book})
             </Link>
           </li>
         ))}
       </ul>
-      <Button variant="primary" onClick={() => setShowEventModal(true)}>
-        Create New Event
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="primary"
+          onClick={() => setShowEventModal(true)}
+          style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+        >
+          Create New Event
+        </Button>
+      )}
 
       <CreateEventModal
         show={showEventModal}
@@ -118,15 +136,21 @@ function BookClubDetail() {
       <ul>
         {clubData.attributes.polls.map((poll) => (
           <li key={poll.id}>
-            <Link to={`/poll/${poll.id}`}>
-              {poll.poll_question} ({poll.expiration_date})
+            <Link to={`/poll/${poll.id}`} style={{ color: "#058789" }}>
+              {poll.poll_question} ({formatPollDate(poll.expiration_date)})
             </Link>
           </li>
         ))}
       </ul>
-      <Button variant="primary" onClick={() => setShowPollModal(true)}>
-        Create New Poll
-      </Button>
+      {clubData.attributes.user_is_admin && (
+        <Button
+          variant="primary"
+          onClick={() => setShowPollModal(true)}
+          style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+        >
+          Create New Poll
+        </Button>
+      )}
 
       <CreatePollModal
         show={showPollModal}

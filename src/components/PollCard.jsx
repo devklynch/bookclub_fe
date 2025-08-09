@@ -1,32 +1,21 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { formatPollDate } from "../utils/dateUtils";
 
 function PollCard({ poll }) {
-  const formatExpirationDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    };
-    return date.toLocaleDateString("en-US", options);
-  };
-
   return (
     <Link
       to={`/poll/${poll.id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
+      style={{ textDecoration: "none", color: "#058789" }}
     >
-      <Card className="p-3 border rounded mb-2 shadow-sm h-100">
+      <Card
+        className="p-3 border rounded mb-2 shadow-sm h-100"
+        style={{ backgroundColor: "#f0ecc9" }}
+      >
         <Card.Body>
           <Card.Title>{poll.poll_question}</Card.Title>
           <Card.Text>
-            <strong>Expires:</strong>{" "}
-            {formatExpirationDate(poll.expiration_date)}
+            <strong>Expires:</strong> {formatPollDate(poll.expiration_date)}
           </Card.Text>
         </Card.Body>
       </Card>

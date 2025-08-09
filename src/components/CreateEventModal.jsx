@@ -135,7 +135,11 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button type="submit" variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+  
+            >
               Save
             </Button>
           </div>

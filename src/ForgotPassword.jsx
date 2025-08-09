@@ -41,6 +41,7 @@ function ForgotPassword() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
+              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
             >
               Click here to reset your password
             </a>
@@ -75,7 +76,7 @@ function ForgotPassword() {
     >
       <Row className="w-100">
         <Col md={{ span: 6, offset: 3 }}>
-          <Card>
+          <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Forgot Password</h2>
               <p className="text-muted text-center mb-4">
@@ -110,7 +111,7 @@ function ForgotPassword() {
                 <div className="text-center">
                   <small className="text-muted">
                     Remember your password?{" "}
-                    <a href="/" style={{ textDecoration: "none" }}>
+                    <a href="/" className="text-decoration-none">
                       Log in here
                     </a>
                   </small>

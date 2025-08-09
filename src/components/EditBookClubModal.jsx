@@ -74,7 +74,11 @@ function EditBookClubModal({ show, handleClose, bookClub, onBookClubUpdated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button type="submit" variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+  
+            >
               Save Changes
             </Button>
           </div>
