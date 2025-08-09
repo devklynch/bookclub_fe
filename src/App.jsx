@@ -11,6 +11,7 @@ import PollDetail from "./PollDetail";
 import EventDetail from "./EventDetail";
 import AllBookClubs from "./AllBookClubs";
 import AllEvents from "./AllEvents";
+import AllPolls from "./AllPolls";
 
 function App() {
   const handleLogin = (token) => {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookclubs" element={<AllBookClubs />} />
           <Route path="/events" element={<AllEvents />} />
+          <Route path="/polls" element={<AllPolls />} />
           <Route path="/bookclub/:id" element={<BookClubDetail />} />
           <Route path="/poll/:id" element={<PollDetail />} />
           <Route

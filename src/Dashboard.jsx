@@ -106,14 +106,19 @@ function Dashboard() {
         </a>
       </div>
       <Row>
-        {clubData.upcoming_events.slice(0, 5).map((event) => (
+        {clubData.upcoming_events.map((event) => (
           <Col key={event.id} md={4} className="mb-3">
             <EventCard event={event} bookClubId={event.book_club.id} />
           </Col>
         ))}
       </Row>
 
-      <h3>Active Polls</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Active Polls</h3>
+        <a href="/polls" className="btn btn-outline-primary btn-sm">
+          Show all polls
+        </a>
+      </div>
       <Row>
         {clubData.active_polls.map((poll) => (
           <Col key={poll.id} md={4} className="mb-3">
