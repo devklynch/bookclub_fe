@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import CreateEventModal from "./components/CreateEventModal";
 import CreatePollModal from "./components/CreatePollModal";
 import EditBookClubModal from "./components/EditBookClubModal";
+import InviteMembersModal from "./components/InviteMembersModal";
 import axios from "axios";
 import { formatEventDate, formatPollDate } from "./utils/dateUtils";
 
@@ -13,6 +14,7 @@ function BookClubDetail() {
   const [showEventModal, setShowEventModal] = useState(false);
   const [showPollModal, setShowPollModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -95,6 +97,18 @@ function BookClubDetail() {
         onBookClubUpdated={handleBookClubUpdated}
       />
       <h4>Members</h4>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <span>Current members: {clubData.attributes.members.length}</span>
+        {clubData.attributes.user_is_admin && (
+          <Button
+            variant="success"
+            onClick={() => setShowInviteModal(true)}
+            style={{ backgroundColor: "#058789", borderColor: "#058789" }}
+          >
+            ✉️ Invite Members
+          </Button>
+        )}
+      </div>
       <ul>
         {clubData.attributes.members.map((member) => (
           <li key={member.id}>
@@ -157,6 +171,16 @@ function BookClubDetail() {
         handleClose={() => setShowPollModal(false)}
         bookClubId={id}
         onPollCreated={handlePollCreated}
+      />
+
+      <InviteMembersModal
+        show={showInviteModal}
+        onHide={() => setShowInviteModal(false)}
+        bookClubId={id}
+        onInvitationSent={() => {
+          // Optionally refresh the book club data to show new members
+          // For now, we'll just close the modal
+        }}
       />
     </div>
   );
