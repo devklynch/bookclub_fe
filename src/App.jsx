@@ -12,6 +12,7 @@ import EventDetail from "./EventDetail";
 import AllBookClubs from "./AllBookClubs";
 import AllEvents from "./AllEvents";
 import AllPolls from "./AllPolls";
+import InvitationAccepted from "./InvitationAccepted";
 
 function App() {
   const handleLogin = (token) => {
@@ -37,6 +38,7 @@ function App() {
             path="/book_clubs/:bookClubId/event/:id"
             element={<EventDetail />}
           />
+          <Route path="/invitation-accepted" element={<InvitationAccepted />} />
         </Routes>
       </Router>
     </div>

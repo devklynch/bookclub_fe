@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import api from "./api";
 import {
   Form,
@@ -21,7 +21,19 @@ function CreateAccount() {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [invitationToken, setInvitationToken] = useState(null);
+  const [bookClubName, setBookClubName] = useState(null);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  // Check for invitation token in URL
+  useEffect(() => {
+    const token = searchParams.get("invitation_token");
+    if (token) {
+      setInvitationToken(token);
+      // You could also fetch book club info here if needed
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,9 +46,16 @@ function CreateAccount() {
     setError(null);
 
     try {
-      const response = await api.post("/users", {
+      const userData = {
         user: formData,
-      });
+      };
+
+      // Add invitation token if present
+      if (invitationToken) {
+        userData.invitation_token = invitationToken;
+      }
+
+      const response = await api.post("/users", userData);
 
       const token = response.data.token;
       const user = response.data.user;
@@ -47,8 +66,13 @@ function CreateAccount() {
 
       console.log("Account created successfully:", user);
 
-      // Redirect to dashboard
-      navigate("/dashboard");
+      // If there was an invitation, redirect to the book club
+      if (invitationToken) {
+        navigate("/dashboard");
+      } else {
+        // Redirect to dashboard
+        navigate("/dashboard");
+      }
     } catch (err) {
       if (err.response && err.response.data && err.response.data.errors) {
         // Extract error messages from the error objects
@@ -75,6 +99,15 @@ function CreateAccount() {
           <Card className="bg-secondary">
             <Card.Body>
               <h2 className="mb-4 text-center">Create Account</h2>
+
+              {/* Show invitation info if present */}
+              {invitationToken && (
+                <Alert variant="info" className="mb-3">
+                  🎉 You're joining a book club! Complete your account to get
+                  started.
+                </Alert>
+              )}
+
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formDisplayName" className="mb-3">
