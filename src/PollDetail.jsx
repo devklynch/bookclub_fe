@@ -61,6 +61,11 @@ function PollDetail() {
       setUserVotes([...userVotes, newVote]);
       await fetchPoll();
     } catch (err) {
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Failed to vote. Please try again.");
+      }
       console.error("Failed to vote:", err);
     }
   };
@@ -80,18 +85,49 @@ function PollDetail() {
       setUserVotes(userVotes.filter((v) => v.option_id !== optionId));
       await fetchPoll();
     } catch (err) {
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Failed to remove vote. Please try again.");
+      }
       console.error("Failed to remove vote:", err);
     }
   };
 
   return (
     <div className="p-4">
+      {/* Display error messages */}
+      {error && (
+        <div
+          className="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {error}
+          <button
+            type="button"
+            className="btn-close"
+            onClick={() => setError(null)}
+            aria-label="Close"
+          ></button>
+        </div>
+      )}
+
       <h2>{pollData.attributes.poll_question}</h2>
       <p>{pollData.attributes.book_club_name}</p>
       <p>
         <strong>Expires:</strong>{" "}
         {formatPollDate(pollData.attributes.expiration_date)}
       </p>
+
+      {/* Show expired poll message */}
+      {pollData.attributes.expired && (
+        <div className="alert alert-warning" role="alert">
+          <strong>
+            ⚠️ This poll has expired and is no longer accepting votes.
+          </strong>
+        </div>
+      )}
+
       {pollData.attributes.multiple_votes ? (
         <p className="text-green-600 font-semibold">
           Can vote for multiple options
@@ -125,19 +161,46 @@ function PollDetail() {
                 <button
                   className="px-2 py-1 rounded text-sm ml-2"
                   style={{
-                    backgroundColor: "#f0ecc9",
-                    borderColor: "#f0ecc9",
-                    color: "#503d2e",
+                    backgroundColor: pollData.attributes.expired
+                      ? "#cccccc"
+                      : "#f0ecc9",
+                    borderColor: pollData.attributes.expired
+                      ? "#cccccc"
+                      : "#f0ecc9",
+                    color: pollData.attributes.expired ? "#666666" : "#503d2e",
+                    cursor: pollData.attributes.expired
+                      ? "not-allowed"
+                      : "pointer",
                   }}
                   onClick={() => handleRemoveVote(option.id, userVote.vote_id)}
+                  disabled={pollData.attributes.expired}
+                  title={
+                    pollData.attributes.expired
+                      ? "Cannot remove votes from expired poll"
+                      : "Remove your vote"
+                  }
                 >
                   Remove Vote
                 </button>
               ) : (
                 <button
                   className="px-2 py-1 rounded text-sm ml-2"
-                  style={{ backgroundColor: "#058789", color: "white" }}
+                  style={{
+                    backgroundColor: pollData.attributes.expired
+                      ? "#cccccc"
+                      : "#058789",
+                    color: pollData.attributes.expired ? "#666666" : "white",
+                    cursor: pollData.attributes.expired
+                      ? "not-allowed"
+                      : "pointer",
+                  }}
                   onClick={() => handleVote(option.id)}
+                  disabled={pollData.attributes.expired}
+                  title={
+                    pollData.attributes.expired
+                      ? "This poll has expired"
+                      : "Vote for this option"
+                  }
                 >
                   Vote
                 </button>
