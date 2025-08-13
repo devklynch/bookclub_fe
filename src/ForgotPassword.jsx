@@ -29,27 +29,21 @@ function ForgotPassword() {
         email: email,
       });
 
-      if (response.data.reset_url) {
-        setSuccess(
-          <div>
-            <p>{response.data.message}</p>
-            <p>
-              <strong>Reset Link:</strong>
-            </p>
-            <a
-              href={response.data.reset_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-              style={{ backgroundColor: "#058789", borderColor: "#058789" }}
-            >
-              Click here to reset your password
-            </a>
-          </div>
-        );
-      } else {
-        setSuccess(response.data.message);
-      }
+      setSuccess(
+        <div>
+          <p>{response.data.message}</p>
+          <p className="mt-3">
+            <strong>📧 Check your email!</strong>
+          </p>
+          <p className="text-muted">
+            We've sent password reset instructions to your email address. Click
+            the link in the email to reset your password.
+          </p>
+          <p className="text-muted small">
+            <strong>Note:</strong> The reset link will expire in 6 hours.
+          </p>
+        </div>
+      );
       setEmail("");
     } catch (err) {
       console.log("Error response:", err.response);
