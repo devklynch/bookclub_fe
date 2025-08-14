@@ -17,7 +17,9 @@ function EventDetail() {
   const fetchEvent = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/book_clubs/${bookClubId}/events/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,7 +52,11 @@ function EventDetail() {
 
       // Send PATCH request to update attending
       await axios.patch(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events/${id}/attendees/${attendee.attendee_id}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/book_clubs/${bookClubId}/events/${id}/attendees/${
+          attendee.attendee_id
+        }`,
         { attendee: { attending: newStatus } },
         {
           headers: {

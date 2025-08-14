@@ -90,7 +90,9 @@ function EditPollModal({ show, handleClose, pollData, onPollUpdated }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/book_clubs/${pollData.attributes.book_club_id}/polls/${pollData.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/book_clubs/${
+          pollData.attributes.book_club_id
+        }/polls/${pollData.id}`,
         {
           method: "PATCH",
           headers: {

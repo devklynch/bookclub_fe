@@ -17,14 +17,17 @@ function CreateBookClubModal({ show, handleClose, onBookClubCreated }) {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3000/api/v1/book_clubs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ book_club: formData }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/book_clubs`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ book_club: formData }),
+        }
+      );
 
       if (response.ok) {
         const newBookClubJson = await response.json();
@@ -77,11 +80,7 @@ function CreateBookClubModal({ show, handleClose, onBookClubCreated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              variant="primary"
-  
-            >
+            <Button type="submit" variant="primary">
               Create Book Club
             </Button>
           </div>

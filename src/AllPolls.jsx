@@ -16,7 +16,7 @@ function AllPolls() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/users/${userId}/polls`,
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/polls`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

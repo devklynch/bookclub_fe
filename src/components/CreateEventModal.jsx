@@ -32,7 +32,7 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/events`,
+        `${import.meta.env.VITE_API_BASE_URL}/book_clubs/${bookClubId}/events`,
         {
           method: "POST",
           headers: {
@@ -135,11 +135,7 @@ function CreateEventModal({ show, handleClose, bookClubId, onEventCreated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              variant="primary"
-  
-            >
+            <Button type="submit" variant="primary">
               Save
             </Button>
           </div>

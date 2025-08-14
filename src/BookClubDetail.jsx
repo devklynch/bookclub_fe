@@ -25,7 +25,9 @@ function BookClubDetail() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/users/${userId}/book_clubs/${id}`,
+          `${
+            import.meta.env.VITE_API_BASE_URL
+          }/users/${userId}/book_clubs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

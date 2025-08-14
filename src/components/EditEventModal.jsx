@@ -48,7 +48,9 @@ function EditEventModal({ show, handleClose, eventData, onEventUpdated }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/book_clubs/${eventData.attributes.book_club_id}/events/${eventData.id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/book_clubs/${
+          eventData.attributes.book_club_id
+        }/events/${eventData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -135,11 +137,7 @@ function EditEventModal({ show, handleClose, eventData, onEventUpdated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              variant="primary"
-  
-            >
+            <Button type="submit" variant="primary">
               Save Changes
             </Button>
           </div>

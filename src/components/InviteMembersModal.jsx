@@ -19,7 +19,9 @@ function InviteMembersModal({ show, onHide, bookClubId, onInvitationSent }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/invitations`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/book_clubs/${bookClubId}/invitations`,
         { invitation: { email } },
         {
           headers: {
@@ -52,7 +54,9 @@ function InviteMembersModal({ show, onHide, bookClubId, onInvitationSent }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/invitations`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/book_clubs/${bookClubId}/invitations`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

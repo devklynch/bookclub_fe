@@ -19,7 +19,7 @@ function AllEvents() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/users/${userId}/events`,
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/events`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
