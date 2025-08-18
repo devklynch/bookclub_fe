@@ -19,7 +19,7 @@ function Dashboard() {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/users/${userId}/all_club_data`,
+          `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/all_club_data`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

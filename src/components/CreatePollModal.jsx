@@ -50,7 +50,7 @@ function CreatePollModal({ show, handleClose, bookClubId, onPollCreated }) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/v1/book_clubs/${bookClubId}/polls`,
+        `${import.meta.env.VITE_API_BASE_URL}/book_clubs/${bookClubId}/polls`,
         {
           method: "POST",
           headers: {
@@ -151,11 +151,7 @@ function CreatePollModal({ show, handleClose, bookClubId, onPollCreated }) {
             <Button variant="secondary" onClick={handleClose} className="me-2">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              variant="primary"
-  
-            >
+            <Button type="submit" variant="primary">
               Save
             </Button>
           </div>

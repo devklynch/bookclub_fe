@@ -18,7 +18,7 @@ function PollDetail() {
   const fetchPoll = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/users/${userId}/polls/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/polls/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,7 +47,9 @@ function PollDetail() {
   const handleVote = async (optionId) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/users/${userId}/polls/${pollData.id}/options/${optionId}/votes`,
+        `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/polls/${
+          pollData.id
+        }/options/${optionId}/votes`,
         {},
         {
           headers: {
@@ -73,7 +75,9 @@ function PollDetail() {
   const handleRemoveVote = async (optionId, voteId) => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/v1/users/${userId}/polls/${pollData.id}/options/${optionId}/votes/${voteId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/polls/${
+          pollData.id
+        }/options/${optionId}/votes/${voteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
