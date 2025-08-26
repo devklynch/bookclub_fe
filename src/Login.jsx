@@ -85,11 +85,7 @@ function Login({ onLogin }) {
                   />
                 </Form.Group>
 
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-100 mb-3"
-                >
+                <Button variant="primary" type="submit" className="w-100 mb-3">
                   Log In
                 </Button>
 
