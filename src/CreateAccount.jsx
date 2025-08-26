@@ -64,8 +64,6 @@ function CreateAccount() {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      console.log("Account created successfully:", user);
-
       // If there was an invitation, redirect to the book club
       if (invitationToken) {
         navigate("/dashboard");
