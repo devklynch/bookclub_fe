@@ -45,8 +45,6 @@ function BookClubDetail() {
   }, [id]);
 
   const handleEventCreated = (newEvent) => {
-    console.log("🧩 New event received:", newEvent);
-    console.log("📋 Existing events:", clubData.attributes.events);
     setClubData((prevData) => ({
       ...prevData,
       attributes: {
@@ -57,7 +55,6 @@ function BookClubDetail() {
   };
 
   const handlePollCreated = (newPoll) => {
-    console.log("📊 New poll received:", newPoll);
     setClubData((prevData) => ({
       ...prevData,
       attributes: {
