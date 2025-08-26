@@ -15,9 +15,7 @@ import AllPolls from "./AllPolls";
 import InvitationAccepted from "./InvitationAccepted";
 
 function App() {
-  const handleLogin = (token) => {
-    console.log("Logged in with token:", token);
-  };
+  const handleLogin = (token) => {};
 
   return (
     <div className="p-2 bg-primary text-primary">

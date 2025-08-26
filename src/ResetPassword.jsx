@@ -102,10 +102,7 @@ function ResetPassword() {
                 <h2 className="mb-4 text-center">Invalid Reset Link</h2>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className="text-center">
-                  <a
-                    href="/forgot_password"
-                    className="btn btn-primary"
-                  >
+                  <a href="/forgot_password" className="btn btn-primary">
                     Request New Reset Link
                   </a>
                 </div>
