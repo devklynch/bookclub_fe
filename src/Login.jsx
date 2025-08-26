@@ -30,16 +30,7 @@ function Login({ onLogin }) {
       // Save the token (optional: localStorage, context, etc.)
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(
-        "Token:",
-        token,
-        "Email:",
-        email,
-        "User:",
-        user,
-        "User ID:",
-        user.data.id
-      );
+
       // Call any callback passed in (optional)
       if (onLogin) onLogin(token);
 
