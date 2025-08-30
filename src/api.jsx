@@ -46,4 +46,28 @@ api.interceptors.response.use(
   }
 );
 
+// Logout function
+export const logout = async () => {
+  try {
+    // Call the logout endpoint
+    await api.delete("/users/sign_out");
+
+    // Clear localStorage regardless of response
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    return { success: true, message: "Logged out successfully" };
+  } catch (error) {
+    // Even if the API call fails, clear localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    console.error("Logout error:", error);
+    return {
+      success: false,
+      message: error.response?.data?.error || "Logout failed",
+    };
+  }
+};
+
 export default api;

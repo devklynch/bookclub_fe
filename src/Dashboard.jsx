@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Row, Col, Dropdown, Button } from "react-bootstrap";
 import BookClubCard from "./components/BookClubCard";
 import EventCard from "./components/EventCard";
 import PollCard from "./components/PollCard";
 import CreateBookClubModal from "./components/CreateBookClubModal";
+import { logout } from "./api";
 import axios from "axios";
 
 function Dashboard() {
   const [clubData, setClubData] = useState(null);
   const [error, setError] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchClubData = async () => {
@@ -46,6 +49,24 @@ function Dashboard() {
     }));
   };
 
+  const handleLogout = async () => {
+    try {
+      const result = await logout();
+      if (result.success) {
+        // Navigate to login page
+        navigate("/");
+      } else {
+        // Show error but still redirect (since localStorage is cleared)
+        console.error("Logout error:", result.message);
+        navigate("/");
+      }
+    } catch (error) {
+      // If anything goes wrong, still redirect to login
+      console.error("Logout failed:", error);
+      navigate("/");
+    }
+  };
+
   return (
     <div className="p-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
@@ -78,7 +99,7 @@ function Dashboard() {
               <i className="fas fa-cog me-2"></i>
               Settings
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item onClick={handleLogout}>
               <i className="fas fa-sign-out-alt me-2"></i>
               Logout
             </Dropdown.Item>
