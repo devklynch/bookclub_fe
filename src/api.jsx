@@ -29,11 +29,19 @@ api.interceptors.response.use(
   (error) => {
     // Handle authentication errors
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      // Redirect to login if needed
-      if (window.location.pathname !== "/login") {
-        window.location.href = "/login";
+      // Don't redirect if this is a login attempt failure
+      const isLoginAttempt = error.config?.url?.includes("/users/sign_in");
+
+      if (!isLoginAttempt) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        // Redirect to login if needed (only if not already on login page and not a login attempt)
+        if (
+          window.location.pathname !== "/" &&
+          window.location.pathname !== "/login"
+        ) {
+          window.location.href = "/";
+        }
       }
     }
 
@@ -66,6 +74,37 @@ export const logout = async () => {
     return {
       success: false,
       message: error.response?.data?.error || "Logout failed",
+    };
+  }
+};
+
+// Update user profile function
+export const updateUser = async (userId, userData) => {
+  try {
+    const response = await api.patch(`/users/${userId}`, {
+      user: userData,
+    });
+
+    // Update user in localStorage if the update was successful
+    if (response.data.data) {
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+      if (currentUser) {
+        currentUser.data = response.data.data;
+        localStorage.setItem("user", JSON.stringify(currentUser));
+      }
+    }
+
+    return {
+      success: true,
+      message: response.data.message,
+      user: response.data.data,
+    };
+  } catch (error) {
+    console.error("Update user error:", error);
+    return {
+      success: false,
+      message: error.response?.data?.error || "Failed to update profile",
+      errors: error.response?.data?.errors || {},
     };
   }
 };

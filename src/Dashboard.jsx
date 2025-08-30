@@ -95,7 +95,7 @@ function Dashboard() {
               Create Book Club
             </Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>
+            <Dropdown.Item onClick={() => navigate("/settings")}>
               <i className="fas fa-cog me-2"></i>
               Settings
             </Dropdown.Item>
