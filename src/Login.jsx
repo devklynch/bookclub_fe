@@ -18,6 +18,17 @@ function Login({ onLogin }) {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if user is already authenticated
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    // If already authenticated, redirect to dashboard
+    if (token && user) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
