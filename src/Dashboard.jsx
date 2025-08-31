@@ -68,22 +68,41 @@ function Dashboard() {
   };
 
   return (
-    <div className="p-4">
+    <div
+      className="p-4 cozy-container"
+      style={{ margin: "2rem auto", maxWidth: "1400px" }}
+    >
+      <div className="window-drops"></div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2>Welcome, {clubData.display_name}</h2>
+        <h2
+          className="coffee-steam"
+          style={{
+            color: "var(--primary-text)",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
+            fontSize: "2.2rem",
+            fontWeight: "600",
+          }}
+        >
+          Welcome, {clubData.display_name}
+        </h2>
         <Dropdown>
           <Dropdown.Toggle
             variant="outline-secondary"
             id="dropdown-basic"
+            className="warm-glow"
             style={{
-              width: "50px",
-              height: "50px",
+              width: "55px",
+              height: "55px",
               borderRadius: "50%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "20px",
-              border: "2px solid #6c757d",
+              fontSize: "24px",
+              border: "2px solid var(--accent-color)",
+              backgroundColor: "var(--card-bg)",
+              color: "var(--primary-text)",
+              boxShadow: "0 4px 12px rgba(61, 47, 42, 0.15)",
+              transition: "all 0.3s ease",
             }}
           >
             ☰
@@ -108,11 +127,24 @@ function Dashboard() {
       </div>
 
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Book Clubs</h3>
+        <h3
+          style={{
+            color: "var(--primary-text)",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
+            fontSize: "1.8rem",
+            fontWeight: "600",
+            marginBottom: "0",
+          }}
+        >
+          📚 Book Clubs
+        </h3>
         <a
           href="/bookclubs"
-          className="btn btn-outline-primary btn-sm"
-          style={{ borderColor: "#058789", color: "#058789" }}
+          className="btn btn-golden btn-sm warm-glow"
+          style={{
+            fontSize: "0.85rem",
+            fontWeight: "500",
+          }}
         >
           Show all clubs
         </a>
@@ -124,12 +156,25 @@ function Dashboard() {
           </Col>
         ))}
       </Row>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Upcoming Events</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3 mt-5">
+        <h3
+          style={{
+            color: "var(--primary-text)",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
+            fontSize: "1.8rem",
+            fontWeight: "600",
+            marginBottom: "0",
+          }}
+        >
+          📅 Upcoming Events
+        </h3>
         <a
           href="/events"
-          className="btn btn-outline-primary btn-sm"
-          style={{ borderColor: "#058789", color: "#058789" }}
+          className="btn btn-burgundy btn-sm warm-glow"
+          style={{
+            fontSize: "0.85rem",
+            fontWeight: "500",
+          }}
         >
           Show all events
         </a>
@@ -142,12 +187,25 @@ function Dashboard() {
         ))}
       </Row>
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Active Polls</h3>
+      <div className="d-flex justify-content-between align-items-center mb-3 mt-5">
+        <h3
+          style={{
+            color: "var(--primary-text)",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
+            fontSize: "1.8rem",
+            fontWeight: "600",
+            marginBottom: "0",
+          }}
+        >
+          🗳️ Active Polls
+        </h3>
         <a
           href="/polls"
-          className="btn btn-outline-primary btn-sm"
-          style={{ borderColor: "#058789", color: "#058789" }}
+          className="btn btn-rust btn-sm warm-glow"
+          style={{
+            fontSize: "0.85rem",
+            fontWeight: "500",
+          }}
         >
           Show all polls
         </a>

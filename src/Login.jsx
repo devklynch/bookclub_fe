@@ -55,58 +55,137 @@ function Login({ onLogin }) {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center p-0 bg-primary"
-      style={{ minHeight: "100vh", width: "100vh" }}
+      className="d-flex justify-content-center align-items-center p-0"
+      style={{
+        minHeight: "100vh",
+        width: "100%",
+        background:
+          "linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 50%, #d6c8b5 100%)",
+        position: "relative",
+      }}
     >
+      <div className="window-drops"></div>
       <Row className="w-100">
-        <Col md={{ span: 6, offset: 3 }}>
-          <Card className="bg-secondary">
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
+          <Card
+            className="cozy-container warm-glow"
+            style={{
+              backgroundColor: "var(--card-bg)",
+              borderColor: "var(--border-color)",
+              boxShadow: "0 12px 40px rgba(61, 47, 42, 0.2)",
+              position: "relative",
+            }}
+          >
+            <div className="book-corner top-left"></div>
+            <div className="book-corner bottom-right"></div>
             <Card.Body>
-              <h2 className="mb-4 text-center">Login</h2>
+              <h2
+                className="mb-4 text-center coffee-steam"
+                style={{
+                  color: "var(--primary-text)",
+                  fontFamily: "'Georgia', 'Times New Roman', serif",
+                  fontSize: "2.2rem",
+                  fontWeight: "600",
+                }}
+              >
+                ☕ Login 📚
+              </h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleLogin}>
                 <Form.Group controlId="formEmail" className="mb-3">
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label
+                    style={{
+                      color: "var(--primary-text)",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Email
+                  </Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder="Enter email"
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      borderColor: "var(--border-color)",
+                      color: "var(--primary-text)",
+                      borderRadius: "8px",
+                      padding: "12px 16px",
+                    }}
                   />
                 </Form.Group>
 
                 <Form.Group controlId="formPassword" className="mb-3">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label
+                    style={{
+                      color: "var(--primary-text)",
+                      fontWeight: "500",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Password
+                  </Form.Label>
                   <Form.Control
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      borderColor: "var(--border-color)",
+                      color: "var(--primary-text)",
+                      borderRadius: "8px",
+                      padding: "12px 16px",
+                    }}
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100 mb-3">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="w-100 mb-3 warm-glow"
+                  style={{
+                    padding: "12px 24px",
+                    fontSize: "1.1rem",
+                    fontWeight: "600",
+                    borderRadius: "8px",
+                  }}
+                >
                   Log In
                 </Button>
 
                 <div className="text-center">
-                  <small className="text-muted">
+                  <small
+                    style={{ color: "var(--primary-text)", opacity: "0.8" }}
+                  >
                     Don't have an account?{" "}
                     <a
                       href="/create_account"
-                      style={{ textDecoration: "none" }}
+                      style={{
+                        textDecoration: "none",
+                        color: "var(--forest-green)",
+                        fontWeight: "500",
+                      }}
                     >
                       Create one here
                     </a>
                   </small>
                 </div>
                 <div className="text-center mt-2">
-                  <small className="text-muted">
+                  <small
+                    style={{ color: "var(--primary-text)", opacity: "0.8" }}
+                  >
                     <a
                       href="/forgot_password"
-                      style={{ textDecoration: "none" }}
+                      style={{
+                        textDecoration: "none",
+                        color: "var(--burgundy)",
+                        fontWeight: "500",
+                      }}
                     >
                       Forgot your password?
                     </a>

@@ -1,48 +1,63 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #3d2f2a;
+  background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Custom color variables */
-  --primary-bg: #e3a72f;
-  --primary-text: #503d2e;
-  --card-bg: #f0ecc9;
-  --accent-color: #058789;
-  --border-color: #503d2e;
+  /* Enhanced coffee shop & rainy day color palette with pops of color */
+  --primary-bg: linear-gradient(
+    135deg,
+    #8b6f47 0%,
+    #6d5a3f 100%
+  ); /* Rich coffee brown */
+  --primary-text: #3d2f2a; /* Dark espresso brown */
+  --card-bg: #faf7f0; /* Warm cream */
+  --accent-color: #a0785a; /* Warm caramel */
+  --border-color: #d4c4b0; /* Soft beige */
+
+  /* New colorful accents */
+  --forest-green: #2d5016; /* Deep forest green for book spines */
+  --sage-green: #87a96b; /* Soft sage green */
+  --burgundy: #722f37; /* Rich burgundy for elegance */
+  --golden-amber: #d4af37; /* Golden amber accent */
+  --warm-rust: #b7472a; /* Warm rust orange */
+  --deep-teal: #2f4f4f; /* Deep teal for contrast */
 
   /* Additional color options */
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
-  --light-color: #f8f9fa;
-  --dark-color: #343a40;
+  --success-color: #6b8e23; /* Olive green for book club vibes */
+  --danger-color: #8b4513; /* Saddle brown instead of harsh red */
+  --warning-color: #daa520; /* Golden rod for warmth */
+  --info-color: #708090; /* Slate gray for subtle info */
+  --light-color: #faf7f0; /* Warm cream */
+  --dark-color: #3d2f2a; /* Dark espresso */
 
-  /* Button variants */
-  --btn-primary-bg: var(--accent-color);
-  --btn-primary-border: var(--accent-color);
-  --btn-primary-text: white;
+  /* Button variants with colorful options */
+  --btn-primary-bg: var(--forest-green);
+  --btn-primary-border: var(--forest-green);
+  --btn-primary-text: #faf7f0;
   --btn-secondary-bg: var(--card-bg);
-  --btn-secondary-border: var(--border-color);
+  --btn-secondary-border: var(--sage-green);
   --btn-secondary-text: var(--primary-text);
+  --btn-accent-bg: var(--burgundy);
+  --btn-golden-bg: var(--golden-amber);
+  --btn-rust-bg: var(--warm-rust);
 
   /* Link colors */
   --link-color: var(--accent-color);
-  --link-hover-color: #046a6c;
+  --link-hover-color: #8b6f47;
 
   /* Form states */
   --input-border: var(--border-color);
   --input-focus-border: var(--accent-color);
-  --input-focus-shadow: rgba(5, 135, 137, 0.25);
+  --input-focus-shadow: rgba(160, 120, 90, 0.25);
 
   /* Text colors */
   --text-primary: var(--primary-text);
@@ -70,6 +85,77 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 50%, #d6c8b5 100%);
+  position: relative;
+}
+
+/* Enhanced rain texture overlay for better visibility */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      rgba(160, 120, 90, 0.3),
+      transparent
+    ),
+    radial-gradient(1px 1px at 40px 70px, rgba(160, 120, 90, 0.25), transparent),
+    radial-gradient(2px 2px at 90px 40px, rgba(160, 120, 90, 0.2), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(160, 120, 90, 0.3), transparent),
+    radial-gradient(
+      1px 1px at 60px 120px,
+      rgba(160, 120, 90, 0.15),
+      transparent
+    ),
+    radial-gradient(
+      2px 2px at 110px 160px,
+      rgba(160, 120, 90, 0.25),
+      transparent
+    );
+  background-repeat: repeat;
+  background-size: 180px 250px;
+  animation: raindrops 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Additional subtle rain layer for more density */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      1px 1px at 35px 50px,
+      rgba(160, 120, 90, 0.2),
+      transparent
+    ),
+    radial-gradient(1px 1px at 85px 90px, rgba(160, 120, 90, 0.15), transparent),
+    radial-gradient(
+      1px 1px at 145px 130px,
+      rgba(160, 120, 90, 0.25),
+      transparent
+    );
+  background-repeat: repeat;
+  background-size: 200px 280px;
+  animation: raindrops 6s linear infinite reverse;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+@keyframes raindrops {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 h1 {
@@ -118,6 +204,132 @@ body,
   padding: 0;
 }
 
+/* Subtle raindrop effect - gentle individual droplets */
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.rain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      1px 1px at 5% 10%,
+      rgba(139, 71, 127, 0.4),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 15% 25%,
+      rgba(160, 120, 90, 0.3),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 25% 40%,
+      rgba(139, 111, 71, 0.35),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 35% 60%,
+      rgba(160, 120, 90, 0.25),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 45% 80%,
+      rgba(139, 111, 71, 0.3),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 55% 15%,
+      rgba(160, 120, 90, 0.4),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 65% 35%,
+      rgba(139, 111, 71, 0.25),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 75% 55%,
+      rgba(160, 120, 90, 0.35),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 85% 75%,
+      rgba(139, 111, 71, 0.3),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 95% 90%,
+      rgba(160, 120, 90, 0.25),
+      transparent 3px
+    );
+  background-size: 200px 200px;
+  animation: gentle-rain 8s linear infinite;
+}
+
+.rain::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      1px 1px at 10% 30%,
+      rgba(160, 120, 90, 0.2),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 30% 50%,
+      rgba(139, 111, 71, 0.25),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 50% 70%,
+      rgba(160, 120, 90, 0.3),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 70% 20%,
+      rgba(139, 111, 71, 0.2),
+      transparent 3px
+    ),
+    radial-gradient(
+      1px 1px at 90% 45%,
+      rgba(160, 120, 90, 0.25),
+      transparent 3px
+    );
+  background-size: 250px 250px;
+  animation: gentle-rain 12s linear infinite reverse;
+}
+
+@keyframes gentle-rain {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
 /* Global Bootstrap overrides using CSS variables */
 
 /* Form controls */
@@ -135,35 +347,148 @@ body,
 .card {
   border-color: var(--border-color) !important;
   background-color: var(--card-bg) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(61, 47, 42, 0.15), 0 2px 4px rgba(61, 47, 42, 0.1) !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px);
 }
 
-/* Buttons */
+.card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(61, 47, 42, 0.2), 0 4px 8px rgba(61, 47, 42, 0.15) !important;
+}
+
+/* Buttons with colorful gradients */
 .btn-primary {
-  background-color: var(--btn-primary-bg) !important;
+  background: linear-gradient(
+    135deg,
+    var(--forest-green) 0%,
+    var(--sage-green) 100%
+  ) !important;
   border-color: var(--btn-primary-border) !important;
   color: var(--btn-primary-text) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.3) !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
 }
 
 .btn-primary:hover {
-  background-color: var(--link-hover-color) !important;
-  border-color: var(--link-hover-color) !important;
+  background: linear-gradient(
+    135deg,
+    var(--sage-green) 0%,
+    var(--forest-green) 100%
+  ) !important;
+  border-color: var(--sage-green) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.5) !important;
 }
 
 .btn-secondary {
   background-color: var(--btn-secondary-bg) !important;
   border-color: var(--btn-secondary-border) !important;
   color: var(--btn-secondary-text) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(61, 47, 42, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-secondary:hover {
+  background-color: #f0ecc9 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(61, 47, 42, 0.2) !important;
 }
 
 .btn-outline-primary {
-  border-color: var(--accent-color) !important;
-  color: var(--accent-color) !important;
+  border-color: var(--forest-green) !important;
+  color: var(--forest-green) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--accent-color) !important;
-  border-color: var(--accent-color) !important;
-  color: white !important;
+  background: linear-gradient(
+    135deg,
+    var(--forest-green) 0%,
+    var(--sage-green) 100%
+  ) !important;
+  border-color: var(--forest-green) !important;
+  color: #faf7f0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(45, 80, 22, 0.3) !important;
+}
+
+/* New colorful button variants */
+.btn-burgundy {
+  background: linear-gradient(
+    135deg,
+    var(--burgundy) 0%,
+    #8b3a42 100%
+  ) !important;
+  border-color: var(--burgundy) !important;
+  color: #faf7f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(114, 47, 55, 0.3) !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+}
+
+.btn-burgundy:hover {
+  background: linear-gradient(
+    135deg,
+    #8b3a42 0%,
+    var(--burgundy) 100%
+  ) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(114, 47, 55, 0.5) !important;
+}
+
+.btn-golden {
+  background: linear-gradient(
+    135deg,
+    var(--golden-amber) 0%,
+    #f4c430 100%
+  ) !important;
+  border-color: var(--golden-amber) !important;
+  color: var(--primary-text) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3) !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+}
+
+.btn-golden:hover {
+  background: linear-gradient(
+    135deg,
+    #f4c430 0%,
+    var(--golden-amber) 100%
+  ) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5) !important;
+}
+
+.btn-rust {
+  background: linear-gradient(
+    135deg,
+    var(--warm-rust) 0%,
+    #d2691e 100%
+  ) !important;
+  border-color: var(--warm-rust) !important;
+  color: #faf7f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(183, 71, 42, 0.3) !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+}
+
+.btn-rust:hover {
+  background: linear-gradient(
+    135deg,
+    #d2691e 0%,
+    var(--warm-rust) 100%
+  ) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(183, 71, 42, 0.5) !important;
 }
 
 /* Links */
@@ -224,4 +549,71 @@ a:hover {
   background-color: var(--info-color) !important;
   border-color: var(--info-color) !important;
   color: white !important;
+}
+
+/* Typography enhancements for cozy book vibe */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Georgia", "Times New Roman", serif !important;
+  color: var(--primary-text) !important;
+  text-shadow: 0 1px 2px rgba(61, 47, 42, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+h2 {
+  font-size: 2rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+h3 {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Form styling for warmth */
+.form-control {
+  border-radius: 8px !important;
+  background-color: var(--card-bg) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Container styling for cozy atmosphere */
+.container,
+.container-fluid {
+  background: rgba(250, 247, 240, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(61, 47, 42, 0.1) !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(61, 47, 42, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.dropdown-item {
+  color: var(--primary-text) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(160, 120, 90, 0.1) !important;
+  color: var(--primary-text) !important;
 }
