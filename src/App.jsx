@@ -27,6 +27,8 @@ function App() {
         position: "relative",
       }}
     >
+      {/* Rain effect element for green and purple raindrops */}
+      <div className="rain"></div>
       <div className="container-fluid p-4">
         <h1
           className="text-center my-4"
