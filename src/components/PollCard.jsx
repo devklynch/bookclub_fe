@@ -10,9 +10,8 @@ function PollCard({ poll }) {
       className="warm-glow"
     >
       <Card
-        className="p-3 border rounded mb-2 shadow-sm h-100 cozy-container"
+        className="p-3 border rounded mb-2 shadow-sm h-100 cozy-container poll-card"
         style={{
-          backgroundColor: "var(--card-bg)",
           borderColor: "var(--border-color)",
           transition: "all 0.3s ease",
           position: "relative",
@@ -64,7 +63,7 @@ function PollCard({ poll }) {
               fontSize: "0.9rem",
             }}
           >
-            <strong style={{ color: "var(--warm-rust)" }}>Expires:</strong>{" "}
+            <strong style={{ color: "#faf7f0" }}>Expires:</strong>{" "}
             {formatPollDate(poll.expiration_date)}
           </Card.Text>
         </Card.Body>

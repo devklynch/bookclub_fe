@@ -151,7 +151,14 @@ body,
 /* Cards */
 .card {
   border-color: var(--border-color) !important;
-  background-color: var(--card-bg) !important;
+  background: linear-gradient(
+    135deg,
+    #faf7f0 0%,
+    #f4f0e8 25%,
+    #ede6da 50%,
+    #e8ddd4 75%,
+    #ddd0c0 100%
+  ) !important;
   border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(61, 47, 42, 0.15), 0 2px 4px rgba(61, 47, 42, 0.1) !important;
   transition: all 0.3s ease !important;
@@ -161,6 +168,72 @@ body,
 .card:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 20px rgba(61, 47, 42, 0.2), 0 4px 8px rgba(61, 47, 42, 0.15) !important;
+}
+
+/* Book club specific cards with green gradient background */
+.card.book-club-card {
+  background: linear-gradient(
+    135deg,
+    var(--forest-green) 0%,
+    var(--sage-green) 100%
+  ) !important;
+  background-color: var(--forest-green) !important;
+  color: #faf7f0 !important;
+}
+
+.card.book-club-card .card-title,
+.card.book-club-card .card-text,
+.card.book-club-card h1,
+.card.book-club-card h2,
+.card.book-club-card h3,
+.card.book-club-card h4,
+.card.book-club-card h5,
+.card.book-club-card h6 {
+  color: #faf7f0 !important;
+}
+
+/* Event specific cards with burgundy to teal gradient */
+.card.event-card {
+  background: linear-gradient(
+    135deg,
+    var(--burgundy) 0%,
+    var(--deep-teal) 100%
+  ) !important;
+  background-color: var(--burgundy) !important;
+  color: #faf7f0 !important;
+}
+
+.card.event-card .card-title,
+.card.event-card .card-text,
+.card.event-card h1,
+.card.event-card h2,
+.card.event-card h3,
+.card.event-card h4,
+.card.event-card h5,
+.card.event-card h6 {
+  color: #faf7f0 !important;
+}
+
+/* Poll specific cards with rust to amber gradient */
+.card.poll-card {
+  background: linear-gradient(
+    135deg,
+    var(--warm-rust) 0%,
+    var(--golden-amber) 100%
+  ) !important;
+  background-color: var(--warm-rust) !important;
+  color: #faf7f0 !important;
+}
+
+.card.poll-card .card-title,
+.card.poll-card .card-text,
+.card.poll-card h1,
+.card.poll-card h2,
+.card.poll-card h3,
+.card.poll-card h4,
+.card.poll-card h5,
+.card.poll-card h6 {
+  color: #faf7f0 !important;
 }
 
 /* Buttons with colorful gradients */
@@ -251,13 +324,13 @@ body,
 .btn-golden {
   background: linear-gradient(
     135deg,
-    var(--golden-amber) 0%,
-    #f4c430 100%
+    var(--forest-green) 0%,
+    var(--sage-green) 100%
   ) !important;
-  border-color: var(--golden-amber) !important;
-  color: var(--primary-text) !important;
+  border-color: var(--forest-green) !important;
+  color: #faf7f0 !important;
   border-radius: 8px !important;
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.3) !important;
   transition: all 0.3s ease !important;
   font-weight: 500 !important;
 }
@@ -265,11 +338,11 @@ body,
 .btn-golden:hover {
   background: linear-gradient(
     135deg,
-    #f4c430 0%,
-    var(--golden-amber) 100%
+    var(--sage-green) 0%,
+    var(--forest-green) 100%
   ) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.5) !important;
 }
 
 .btn-rust {
