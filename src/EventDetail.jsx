@@ -318,24 +318,24 @@ function EventDetail() {
 
       {/* Detailed Attendee Lists */}
       <div className="row g-4">
-        {attendingYes.length > 0 && (
-          <div className="col-md-4">
-            <div className="card h-100">
-              <div
-                className="card-header"
-                style={{
-                  backgroundColor: "var(--success-color)",
-                  color: "#faf7f0",
-                }}
-              >
-                <h5 className="mb-0">
-                  <i className="fas fa-check-circle me-2"></i>
-                  Attending ({attendingYes.length})
-                </h5>
-              </div>
-              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
-                <div className="list-group list-group-flush">
-                  {attendingYes.map((attendee) => (
+        <div className="col-md-4">
+          <div className="card h-100">
+            <div
+              className="card-header"
+              style={{
+                backgroundColor: "var(--success-color)",
+                color: "#faf7f0",
+              }}
+            >
+              <h5 className="mb-0">
+                <i className="fas fa-check-circle me-2"></i>
+                Attending ({attendingYes.length})
+              </h5>
+            </div>
+            <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+              <div className="list-group list-group-flush">
+                {attendingYes.length > 0 ? (
+                  attendingYes.map((attendee) => (
                     <div
                       key={attendee.id}
                       className="list-group-item border-0 px-0 py-2"
@@ -347,31 +347,39 @@ function EventDetail() {
                       ></i>
                       {attendee.name}
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <div
+                    className="text-center py-3"
+                    style={{ color: "var(--text-secondary)", opacity: 0.7 }}
+                  >
+                    <i className="fas fa-inbox me-2"></i>
+                    No one is attending yet
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        )}
+        </div>
 
-        {attendingNo.length > 0 && (
-          <div className="col-md-4">
-            <div className="card h-100">
-              <div
-                className="card-header"
-                style={{
-                  backgroundColor: "var(--warm-rust)",
-                  color: "#faf7f0",
-                }}
-              >
-                <h5 className="mb-0">
-                  <i className="fas fa-times-circle me-2"></i>
-                  Can't Attend ({attendingNo.length})
-                </h5>
-              </div>
-              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
-                <div className="list-group list-group-flush">
-                  {attendingNo.map((attendee) => (
+        <div className="col-md-4">
+          <div className="card h-100">
+            <div
+              className="card-header"
+              style={{
+                backgroundColor: "var(--warm-rust)",
+                color: "#faf7f0",
+              }}
+            >
+              <h5 className="mb-0">
+                <i className="fas fa-times-circle me-2"></i>
+                Can't Attend ({attendingNo.length})
+              </h5>
+            </div>
+            <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+              <div className="list-group list-group-flush">
+                {attendingNo.length > 0 ? (
+                  attendingNo.map((attendee) => (
                     <div
                       key={attendee.id}
                       className="list-group-item border-0 px-0 py-2"
@@ -383,31 +391,39 @@ function EventDetail() {
                       ></i>
                       {attendee.name}
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <div
+                    className="text-center py-3"
+                    style={{ color: "var(--text-secondary)", opacity: 0.7 }}
+                  >
+                    <i className="fas fa-inbox me-2"></i>
+                    No one has declined yet
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        )}
+        </div>
 
-        {attendingUnknown.length > 0 && (
-          <div className="col-md-4">
-            <div className="card h-100">
-              <div
-                className="card-header"
-                style={{
-                  backgroundColor: "var(--info-color)",
-                  color: "#faf7f0",
-                }}
-              >
-                <h5 className="mb-0">
-                  <i className="fas fa-question-circle me-2"></i>
-                  Pending RSVP ({attendingUnknown.length})
-                </h5>
-              </div>
-              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
-                <div className="list-group list-group-flush">
-                  {attendingUnknown.map((attendee) => (
+        <div className="col-md-4">
+          <div className="card h-100">
+            <div
+              className="card-header"
+              style={{
+                backgroundColor: "var(--info-color)",
+                color: "#faf7f0",
+              }}
+            >
+              <h5 className="mb-0">
+                <i className="fas fa-question-circle me-2"></i>
+                Pending RSVP ({attendingUnknown.length})
+              </h5>
+            </div>
+            <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+              <div className="list-group list-group-flush">
+                {attendingUnknown.length > 0 ? (
+                  attendingUnknown.map((attendee) => (
                     <div
                       key={attendee.id}
                       className="list-group-item border-0 px-0 py-2"
@@ -419,12 +435,20 @@ function EventDetail() {
                       ></i>
                       {attendee.name}
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <div
+                    className="text-center py-3"
+                    style={{ color: "var(--text-secondary)", opacity: 0.7 }}
+                  >
+                    <i className="fas fa-inbox me-2"></i>
+                    No pending responses
+                  </div>
+                )}
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
