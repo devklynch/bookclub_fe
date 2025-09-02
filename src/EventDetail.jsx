@@ -102,25 +102,87 @@ function EventDetail() {
   );
 
   return (
-    <div className="p-4">
-      <h2>{eventData.attributes.event_name}</h2>
-      <p>{formatEventDate(eventData.attributes.event_date)}</p>
-      <p>Location: {eventData.attributes.location}</p>
-      <p>{eventData.attributes.book}</p>
-      <p>{eventData.attributes.event_notes}</p>
-      {eventData.attributes.user_is_admin && (
-        <Button
-          onClick={() => setShowEditModal(true)}
-          className="mb-3"
-          style={{
-            backgroundColor: "#f0ecc9",
-            borderColor: "#f0ecc9",
-            color: "#503d2e",
-          }}
-        >
-          ✏️ Edit Event
-        </Button>
-      )}
+    <div
+      className="container-fluid"
+      style={{ maxWidth: "900px", margin: "0 auto" }}
+    >
+      {/* Event Header Card */}
+      <div className="card event-card mb-4">
+        <div className="card-body p-4">
+          <div className="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h1
+                className="card-title mb-2"
+                style={{ fontSize: "2.2rem", fontWeight: "600" }}
+              >
+                📚 {eventData.attributes.event_name}
+              </h1>
+              <p
+                className="card-text mb-2"
+                style={{ fontSize: "1.1rem", opacity: "0.9" }}
+              >
+                <i className="fas fa-calendar-alt me-2"></i>
+                {formatEventDate(eventData.attributes.event_date)}
+              </p>
+              <p
+                className="card-text mb-2"
+                style={{ fontSize: "1.1rem", opacity: "0.9" }}
+              >
+                <i className="fas fa-map-marker-alt me-2"></i>
+                {eventData.attributes.location}
+              </p>
+            </div>
+            {eventData.attributes.user_is_admin && (
+              <Button
+                onClick={() => setShowEditModal(true)}
+                className="btn-secondary"
+                style={{ minWidth: "120px" }}
+              >
+                ✏️ Edit Event
+              </Button>
+            )}
+          </div>
+
+          {eventData.attributes.book && (
+            <div
+              className="p-3 rounded-3 mb-3"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--burgundy) 0%, var(--warm-rust) 100%)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                border: "2px solid rgba(255,255,255,0.2)",
+              }}
+            >
+              <h5 style={{ color: "#faf7f0", marginBottom: "0.5rem" }}>
+                📖 Featured Book
+              </h5>
+              <p
+                style={{
+                  color: "#faf7f0",
+                  fontSize: "1.1rem",
+                  marginBottom: "0",
+                  fontStyle: "italic",
+                }}
+              >
+                {eventData.attributes.book}
+              </p>
+            </div>
+          )}
+
+          {eventData.attributes.event_notes && (
+            <div className="mt-3">
+              <h6 style={{ color: "#faf7f0", marginBottom: "0.5rem" }}>
+                📝 Event Notes
+              </h6>
+              <p
+                style={{ color: "#faf7f0", opacity: "0.9", lineHeight: "1.6" }}
+              >
+                {eventData.attributes.event_notes}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
 
       <EditEventModal
         show={showEditModal}
@@ -128,133 +190,241 @@ function EventDetail() {
         eventData={eventData}
         onEventUpdated={(updatedEvent) => setEventData(updatedEvent)}
       />
-      <div className="flex items-center gap-2">
-        <span>
-          Attending:{" "}
-          {eventData.attributes.user_is_attending === true
-            ? "Yes"
-            : eventData.attributes.user_is_attending === false
-            ? "No"
-            : "Undecided"}
-        </span>
+
+      {/* RSVP Status Card */}
+      <div className="card mb-4">
+        <div className="card-body p-4">
+          <div className="row align-items-center">
+            <div className="col-md-6">
+              <h5 className="card-title mb-3">
+                <i
+                  className="fas fa-user-check me-2"
+                  style={{ color: "var(--forest-green)" }}
+                ></i>
+                Your RSVP Status
+              </h5>
+              <div className="d-flex align-items-center">
+                <span
+                  className="badge fs-6 px-3 py-2"
+                  style={{
+                    backgroundColor:
+                      eventData.attributes.user_is_attending === true
+                        ? "var(--success-color)"
+                        : eventData.attributes.user_is_attending === false
+                        ? "var(--warm-rust)"
+                        : "var(--info-color)",
+                    color: "#faf7f0",
+                  }}
+                >
+                  {eventData.attributes.user_is_attending === true
+                    ? "✅ Attending"
+                    : eventData.attributes.user_is_attending === false
+                    ? "❌ Not Attending"
+                    : "❓ Undecided"}
+                </span>
+              </div>
+            </div>
+
+            {eventData.attributes.user_is_attending !== undefined && (
+              <div className="col-md-6">
+                <div className="d-flex flex-wrap gap-2 justify-content-md-end">
+                  {eventData.attributes.user_is_attending !== true && (
+                    <button
+                      onClick={() => updateAttending(true)}
+                      className="btn btn-primary"
+                      style={{ minWidth: "140px" }}
+                    >
+                      ✅ Mark Attending
+                    </button>
+                  )}
+                  {eventData.attributes.user_is_attending !== false && (
+                    <button
+                      onClick={() => updateAttending(false)}
+                      className="btn btn-rust"
+                      style={{ minWidth: "140px" }}
+                    >
+                      ❌ Can't Attend
+                    </button>
+                  )}
+                  {eventData.attributes.user_is_attending !== null && (
+                    <button
+                      onClick={() => updateAttending(null)}
+                      className="btn btn-secondary"
+                      style={{ minWidth: "120px" }}
+                    >
+                      ❓ Undecided
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
-      {eventData.attributes.user_is_attending !== undefined && (
-        <div className="my-4">
-          {eventData.attributes.user_is_attending === true && (
-            <>
-              <button
-                onClick={() => updateAttending(false)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
+      {/* Attendees Overview Cards */}
+      <div className="row g-3 mb-4">
+        <div className="col-md-4">
+          <div className="card h-100 attendee-card-attending">
+            <div className="card-body text-center">
+              <div className="display-6 mb-2">✅</div>
+              <h5 className="card-title" style={{ color: "#faf7f0" }}>
+                Attending
+              </h5>
+              <p
+                className="display-4 mb-0"
+                style={{ color: "#faf7f0", fontWeight: "600" }}
               >
-                ❌ Mark as Not Attending
-              </button>
-              <button
-                onClick={() => updateAttending(null)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
-              >
-                ❓ Mark as Undecided
-              </button>
-            </>
-          )}
-          {eventData.attributes.user_is_attending === null && (
-            <>
-              <button
-                onClick={() => updateAttending(true)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
-              >
-                ✅ Mark as Attending
-              </button>
-              <button
-                onClick={() => updateAttending(false)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
-              >
-                ❌ Mark as Not Attending
-              </button>
-            </>
-          )}
-          {eventData.attributes.user_is_attending === false && (
-            <>
-              <button
-                onClick={() => updateAttending(true)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
-              >
-                ✅ Mark as Attending
-              </button>
-              <button
-                onClick={() => updateAttending(null)}
-                style={{
-                  backgroundColor: "#f0ecc9",
-                  borderColor: "#f0ecc9",
-                  color: "#503d2e",
-                  marginRight: "10px",
-                  padding: "5px 10px",
-                  borderRadius: "4px",
-                }}
-              >
-                ❓ Mark as Undecided
-              </button>
-            </>
-          )}
+                {attendingYes.length}
+              </p>
+            </div>
+          </div>
         </div>
-      )}
 
-      <div className="mt-4">
-        <h4>✅ Attending</h4>
-        <ul>
-          {attendingYes.map((attendee) => (
-            <li key={attendee.id}>{attendee.name}</li>
-          ))}
-        </ul>
+        <div className="col-md-4">
+          <div className="card h-100 attendee-card-not-attending">
+            <div className="card-body text-center">
+              <div className="display-6 mb-2">❌</div>
+              <h5 className="card-title" style={{ color: "#faf7f0" }}>
+                Can't Attend
+              </h5>
+              <p
+                className="display-4 mb-0"
+                style={{ color: "#faf7f0", fontWeight: "600" }}
+              >
+                {attendingNo.length}
+              </p>
+            </div>
+          </div>
+        </div>
 
-        <h4>❌ Not Attending</h4>
-        <ul>
-          {attendingNo.map((attendee) => (
-            <li key={attendee.id}>{attendee.name}</li>
-          ))}
-        </ul>
+        <div className="col-md-4">
+          <div className="card h-100 attendee-card-pending">
+            <div className="card-body text-center">
+              <div className="display-6 mb-2">❓</div>
+              <h5 className="card-title" style={{ color: "#faf7f0" }}>
+                Pending
+              </h5>
+              <p
+                className="display-4 mb-0"
+                style={{ color: "#faf7f0", fontWeight: "600" }}
+              >
+                {attendingUnknown.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <h4>❓ No RSVP</h4>
-        <ul>
-          {attendingUnknown.map((attendee) => (
-            <li key={attendee.id}>{attendee.name}</li>
-          ))}
-        </ul>
+      {/* Detailed Attendee Lists */}
+      <div className="row g-4">
+        {attendingYes.length > 0 && (
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div
+                className="card-header"
+                style={{
+                  backgroundColor: "var(--success-color)",
+                  color: "#faf7f0",
+                }}
+              >
+                <h5 className="mb-0">
+                  <i className="fas fa-check-circle me-2"></i>
+                  Attending ({attendingYes.length})
+                </h5>
+              </div>
+              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+                <div className="list-group list-group-flush">
+                  {attendingYes.map((attendee) => (
+                    <div
+                      key={attendee.id}
+                      className="list-group-item border-0 px-0 py-2"
+                      style={{ backgroundColor: "#faf7f0" }}
+                    >
+                      <i
+                        className="fas fa-user me-2"
+                        style={{ color: "var(--success-color)" }}
+                      ></i>
+                      {attendee.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {attendingNo.length > 0 && (
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div
+                className="card-header"
+                style={{
+                  backgroundColor: "var(--warm-rust)",
+                  color: "#faf7f0",
+                }}
+              >
+                <h5 className="mb-0">
+                  <i className="fas fa-times-circle me-2"></i>
+                  Can't Attend ({attendingNo.length})
+                </h5>
+              </div>
+              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+                <div className="list-group list-group-flush">
+                  {attendingNo.map((attendee) => (
+                    <div
+                      key={attendee.id}
+                      className="list-group-item border-0 px-0 py-2"
+                      style={{ backgroundColor: "#faf7f0" }}
+                    >
+                      <i
+                        className="fas fa-user me-2"
+                        style={{ color: "var(--warm-rust)" }}
+                      ></i>
+                      {attendee.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {attendingUnknown.length > 0 && (
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div
+                className="card-header"
+                style={{
+                  backgroundColor: "var(--info-color)",
+                  color: "#faf7f0",
+                }}
+              >
+                <h5 className="mb-0">
+                  <i className="fas fa-question-circle me-2"></i>
+                  Pending RSVP ({attendingUnknown.length})
+                </h5>
+              </div>
+              <div className="card-body" style={{ backgroundColor: "#faf7f0" }}>
+                <div className="list-group list-group-flush">
+                  {attendingUnknown.map((attendee) => (
+                    <div
+                      key={attendee.id}
+                      className="list-group-item border-0 px-0 py-2"
+                      style={{ backgroundColor: "#faf7f0" }}
+                    >
+                      <i
+                        className="fas fa-user me-2"
+                        style={{ color: "var(--info-color)" }}
+                      ></i>
+                      {attendee.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

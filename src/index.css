@@ -236,6 +236,62 @@ body,
   color: #faf7f0 !important;
 }
 
+/* Attendee overview cards with harmonious colors */
+.card.attendee-card-attending {
+  background: linear-gradient(
+    135deg,
+    var(--forest-green) 0%,
+    var(--sage-green) 100%
+  ) !important;
+  color: #faf7f0 !important;
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3) !important;
+}
+
+.card.attendee-card-not-attending {
+  background: linear-gradient(
+    135deg,
+    var(--burgundy) 0%,
+    var(--warm-rust) 100%
+  ) !important;
+  color: #faf7f0 !important;
+  box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3) !important;
+}
+
+.card.attendee-card-pending {
+  background: linear-gradient(
+    135deg,
+    var(--deep-teal) 0%,
+    var(--info-color) 100%
+  ) !important;
+  color: #faf7f0 !important;
+  box-shadow: 0 4px 12px rgba(47, 79, 79, 0.3) !important;
+}
+
+.card.attendee-card-attending .card-title,
+.card.attendee-card-not-attending .card-title,
+.card.attendee-card-pending .card-title {
+  color: #faf7f0 !important;
+}
+
+/* Attendee list items styling */
+.list-group-item {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.list-group-flush .list-group-item {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.list-group-item.border-0 {
+  background-color: var(--card-bg) !important;
+}
+
+.card .list-group .list-group-item {
+  background-color: var(--card-bg) !important;
+}
+
 /* Buttons with colorful gradients */
 .btn-primary {
   background: linear-gradient(
